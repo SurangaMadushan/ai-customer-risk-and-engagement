@@ -1,0 +1,115 @@
+# ==========================================
+# AI Customer Risk & Engagement
+# Git Ignore Configuration
+# ==========================================
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+
+# -------------------------
+# Virtual Environments
+# -------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# -------------------------
+# Environment Variables
+# -------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------
+# Jupyter Notebook
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# VS Code / IDE
+# -------------------------
+.vscode/
+.idea/
+
+# -------------------------
+# Operating System
+# -------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# ML Model Files
+# -------------------------
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.h5
+*.keras
+
+# -------------------------
+# Local Data Files
+# IMPORTANT:
+# Never commit real customer data
+# -------------------------
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+
+# -------------------------
+# Local Databases
+# -------------------------
+*.db
+*.sqlite
+*.sqlite3
+
+# -------------------------
+# Temporary / Cache
+# -------------------------
+tmp/
+temp/
+.cache/
+.pytest_cache/
+
+# -------------------------
+# Secrets / Credentials
+# -------------------------
+secrets/
+credentials/
+*.pem
+*.key
+
+# -------------------------
+# Build / Distribution
+# -------------------------
+build/
+dist/
+*.egg-info/
+
+# -------------------------
+# Coverage
+# -------------------------
+.coverage
+htmlcov/
+.coverage.*
+
+# -------------------------
+# Streamlit
+# -------------------------
+.streamlit/secrets.toml
