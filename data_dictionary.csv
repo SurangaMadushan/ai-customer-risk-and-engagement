@@ -1,0 +1,18 @@
+Table,Field Name,Data Type,Description
+customers,customer_id,String (Primary Key),"Unique identifier for customer (e.g., C00001)"
+customers,customer_type,String,"Type of customer (Residential, SME, Enterprise)"
+customers,service_type,String,"Type of service (Fiber, LTE, ADSL)"
+customers,package,String,Subscribed Broadband/Telephone package
+customers,behavior_category,String,"Payer Category (Regular, Predictable Late, Irregular, High-Risk)"
+invoices,invoice_id,String (Primary Key),Unique bill/invoice ID
+invoices,customer_id,String (Foreign Key),Links invoice to customer
+invoices,invoice_date,Date (YYYY-MM-DD),Date when invoice was generated
+invoices,due_date,Date (YYYY-MM-DD),Payment due date
+invoices,invoice_amount,Float,Total billed amount
+invoices,outstanding_amount,Float,Unpaid balance remaining
+invoices,status,String,"Bill status (Paid, Overdue)"
+payments,payment_id,String (Primary Key),Unique payment record ID
+payments,invoice_id,String (Foreign Key),Links payment to specific invoice
+payments,customer_id,String (Foreign Key),Links payment to customer
+payments,payment_date,Date (YYYY-MM-DD),Actual date payment was settled
+payments,payment_amount,Float,Amount paid
