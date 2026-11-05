@@ -1,0 +1,28 @@
+SLT — EXPLAINABLE COLLECTION RECOMMENDATIONS (DRAFT)
+Snapshot date: 2026-10-26
+Accounts assessed: 200
+Source: Step 13 classification data; workbook thresholds used only as draft rules
+Reference recommended_action labels NOT used to determine actions.
+
+Recommendation counts:
+recommended_action
+No follow-up          126
+Normal follow-up       48
+Priority follow-up     26
+
+Currently overdue accounts: 41
+Overdue accounts flagged for follow-up: 41
+Overdue accounts allowed temporary grace: 0
+
+Draft thresholds:
+  Priority if overdue days >= 45, or unpaid past-due bills >= 3
+  Reliable late-payer grace: usual positive delay + 5 days
+  No-follow-up limit when overdue: LKR 150,000.00
+
+Safety: 'Priority follow-up' is NOT an automated call or service action.
+Human review and SLT business approval required before operational use.
+
+Agreement with workbook's normalized illustrative reference actions: 200/200
+Different wording normalized (No immediate collection / Normal follow-up guardrail).
+Differences are for review; reference agreement is NOT ML accuracy.
+Differences: 0

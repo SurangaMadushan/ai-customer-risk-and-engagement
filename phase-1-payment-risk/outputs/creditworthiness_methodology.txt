@@ -1,0 +1,20 @@
+SLT — Payment Reliability / Creditworthiness Proxy (PROTOTYPE)
+==============================================================
+Source: Step 13 classification features + invoice totals from Billing
+Not a bank/credit-bureau score or future-default probability.
+Not authorized for autonomous customer decisions.
+
+Scoring (illustrative weights, out of 100):
+  25 points: settled bills / total bills
+  20 points: payment timing consistency
+  15 points: positive average payment delay, capped at 30 days
+  25 points: current overdue days (90-day cap) and unpaid past-due bills (3-bill cap)
+  10 points: outstanding balance relative to average monthly invoice (3x cap)
+   5 points: collection actions (12 cap) and suspensions (2 cap)
+
+Proposed interpretation: 80-100 Strong; 60-79.9 Moderate; 40-59.9 Low; below 40 Very low.
+Fewer than 3 settled bills: no score; manual review.
+All weights, cutoffs, definitions and time horizons require SLT business approval.
+The input workbook contains synthetic records; do not infer real creditworthiness.
+Source reference class labels and customer type are NOT scoring features.
+This result should complement, not replace, customer behaviour and human review.

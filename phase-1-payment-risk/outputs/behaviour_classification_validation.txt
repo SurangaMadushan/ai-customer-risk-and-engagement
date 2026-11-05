@@ -1,0 +1,39 @@
+SLT PAYMENT BEHAVIOUR CLASSIFICATION — VALIDATION
+Analysis date: 2026-10-26
+Data source: SLT_Payment_Behaviour_Dummy_Data.xlsx (200-account synthetic workbook)
+Method: independent rule-based classification from Billing settlement dates
+Threshold source: workbook Thresholds sheet (illustrative; NOT approved SLT policy)
+Pre-filled classifications and ground-truth labels NOT used as classifier inputs.
+
+Accounts assessed: 200
+Predicted class counts:
+behaviour_classification
+Regular payer             80
+Predictable late payer    54
+Irregular payer           40
+High-risk non-payer       26
+
+Agreement with workbook agent_classification: 200/200
+Mismatched accounts vs workbook classification formula: 0
+
+Agreement with designed ground-truth profiles (4 categories): 196/200
+Differences vs designed ground truth: 4
+
+Current overdue accounts (same filter as step 12): 41
+Current outstanding of overdue accounts (LKR): 6,595,496.67
+
+Different from designed ground-truth profile (review business thresholds):
+ account_no behaviour_classification designed_profile (ground truth)
+     443309      High-risk non-payer                 Irregular payer
+     470468          Irregular payer             High-risk non-payer
+     481416          Irregular payer             High-risk non-payer
+     495673          Irregular payer             High-risk non-payer
+
+Important: 200/200 agreement with workbook agent_classification means the
+independent implementation reproduces the SAME threshold rules; it is
+not predictive-model accuracy or validation on new/real customer data.
+
+Operational output: outputs/customer_behaviour_classification.csv
+The operational output intentionally excludes ground-truth and workbook reference labels.
+Note: Payment behaviour classification is distinct from immediate collection action.
+Collection recommendations and creditworthiness scoring are separate upcoming stages.
