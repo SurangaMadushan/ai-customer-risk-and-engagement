@@ -1,0 +1,201 @@
+account_no,customer_id,customer_type,total_bills,settled_bills,avg_payment_delay_days,late_payments,late_ratio,payment_consistency,unpaid_past_due_bills,current_outstanding_LKR,current_overdue_days,suspensions,collection_actions,behaviour_classification,classification_reason
+400282,C10313,Residential,18,18,-4.100000,3,0.166667,0.500000,0,0.000000,0,0,0,Regular payer,Average settlement delay -4.1 days; late ratio 17%
+400942,C10085,Residential,18,17,-5.500000,0,0.000000,0.941176,0,4258.120000,0,0,0,Regular payer,"Average settlement delay -5.5 days; late ratio 0%; current outstanding LKR 4,258.12"
+401025,C10589,Government,18,18,-5.600000,1,0.055556,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.6 days; late ratio 6%
+401220,C10520,Residential,18,17,-5.900000,1,0.058824,0.529412,0,9210.500000,0,0,0,Regular payer,"Average settlement delay -5.9 days; late ratio 6%; current outstanding LKR 9,210.50"
+401934,C10274,SME,18,12,39.200000,10,0.833333,0.166667,5,259648.580000,148,6,41,High-risk non-payer,"5 unpaid past-due bill(s); oldest overdue 148 days; current outstanding LKR 259,648.58"
+402757,C10067,Residential,18,18,5.400000,9,0.500000,0.111111,0,0.000000,0,1,16,Irregular payer,"Variable payment pattern: consistency 11%, average delay 5.4 days, late ratio 50%"
+404117,C10106,Residential,18,18,-4.800000,1,0.055556,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -4.8 days; late ratio 6%
+405209,C10448,Residential,18,18,-6.800000,0,0.000000,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.8 days; late ratio 0%
+406572,C10385,Residential,18,17,6.600000,17,1.000000,1.000000,0,11325.110000,0,0,15,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.6 days; current outstanding LKR 11,325.11"
+406630,C10265,Government,18,17,-4.300000,2,0.117647,0.705882,0,166719.430000,0,0,0,Regular payer,"Average settlement delay -4.3 days; late ratio 12%; current outstanding LKR 166,719.43"
+407100,C10190,Residential,18,17,-4.200000,3,0.176471,0.529412,0,8415.850000,0,0,0,Regular payer,"Average settlement delay -4.2 days; late ratio 18%; current outstanding LKR 8,415.85"
+407455,C10403,Corporate,18,17,6.200000,17,1.000000,1.000000,0,125551.260000,0,0,16,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.2 days; current outstanding LKR 125,551.26"
+407492,C10382,Residential,18,17,10.100000,17,1.000000,1.000000,0,14508.940000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.1 days; current outstanding LKR 14,508.94"
+407665,C10361,Residential,18,16,6.600000,16,1.000000,1.000000,1,23149.160000,25,0,18,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.6 days; current outstanding LKR 23,149.16"
+407685,C10304,SME,18,18,-6.500000,0,0.000000,0.833333,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.5 days; late ratio 0%
+407716,C10097,Residential,18,18,-5.200000,0,0.000000,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.2 days; late ratio 0%
+407944,C10205,Residential,18,17,9.200000,17,1.000000,1.000000,0,7638.360000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.2 days; current outstanding LKR 7,638.36"
+407989,C10373,Residential,18,17,-6.300000,0,0.000000,0.705882,0,5535.090000,0,0,0,Regular payer,"Average settlement delay -6.3 days; late ratio 0%; current outstanding LKR 5,535.09"
+408392,C10061,Residential,18,18,-6.900000,1,0.055556,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.9 days; late ratio 6%
+408834,C10103,Residential,18,17,-6.500000,1,0.058824,0.529412,0,13821.350000,0,0,0,Regular payer,"Average settlement delay -6.5 days; late ratio 6%; current outstanding LKR 13,821.35"
+408907,C10421,Residential,18,18,4.700000,9,0.500000,0.055556,0,0.000000,0,1,20,Irregular payer,"Variable payment pattern: consistency 6%, average delay 4.7 days, late ratio 50%"
+408981,C10415,Residential,18,18,-6.500000,0,0.000000,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.5 days; late ratio 0%
+409016,C10553,Residential,18,18,-6.000000,0,0.000000,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.0 days; late ratio 0%
+409287,C10112,Residential,18,18,-7.100000,0,0.000000,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.1 days; late ratio 0%
+409305,C10088,Residential,18,17,9.000000,17,1.000000,1.000000,0,4815.860000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.0 days; current outstanding LKR 4,815.86"
+409508,C10517,Residential,18,17,9.400000,17,1.000000,1.000000,0,11723.580000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.4 days; current outstanding LKR 11,723.58"
+409602,C10535,Residential,18,18,5.800000,11,0.611111,0.166667,0,0.000000,0,2,18,Irregular payer,"Variable payment pattern: consistency 17%, average delay 5.8 days, late ratio 61%"
+409880,C10253,Corporate,18,17,7.200000,17,1.000000,1.000000,0,107320.490000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.2 days; current outstanding LKR 107,320.49"
+410500,C10409,Residential,18,10,26.100000,8,0.800000,0.100000,7,92917.950000,209,3,41,High-risk non-payer,"7 unpaid past-due bill(s); oldest overdue 209 days; current outstanding LKR 92,917.95"
+410745,C10454,Residential,18,18,-6.200000,0,0.000000,0.833333,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.2 days; late ratio 0%
+412224,C10277,Residential,18,17,-5.800000,0,0.000000,0.941176,0,7410.550000,0,0,0,Regular payer,"Average settlement delay -5.8 days; late ratio 0%; current outstanding LKR 7,410.55"
+412363,C10163,SME,18,17,7.400000,17,1.000000,1.000000,0,20142.780000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.4 days; current outstanding LKR 20,142.78"
+412704,C10166,Government,18,18,17.600000,11,0.611111,0.000000,0,0.000000,0,3,28,Irregular payer,"Variable payment pattern: consistency 0%, average delay 17.6 days, late ratio 61%"
+412833,C10262,SME,18,18,-5.400000,1,0.055556,0.666667,0,0.000000,0,0,1,Regular payer,Average settlement delay -5.4 days; late ratio 6%
+412899,C10202,Corporate,18,18,-5.200000,2,0.111111,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.2 days; late ratio 11%
+413104,C10532,Residential,18,18,-6.100000,0,0.000000,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.1 days; late ratio 0%
+413577,C10604,Government,18,18,-3.000000,9,0.500000,0.055556,0,0.000000,0,0,12,Irregular payer,"Variable payment pattern: consistency 6%, average delay -3.0 days, late ratio 50%"
+414322,C10217,SME,18,16,7.100000,9,0.562500,0.187500,1,44027.550000,25,1,19,Irregular payer,"Variable payment pattern: consistency 19%, average delay 7.1 days, late ratio 56%; current outstanding LKR 44,027.55"
+415713,C10433,Corporate,18,17,-6.200000,0,0.000000,0.823529,0,125155.480000,0,0,0,Regular payer,"Average settlement delay -6.2 days; late ratio 0%; current outstanding LKR 125,155.48"
+415860,C10052,SME,18,17,3.400000,9,0.529412,0.117647,0,21382.620000,0,0,17,Irregular payer,"Variable payment pattern: consistency 12%, average delay 3.4 days, late ratio 53%; current outstanding LKR 21,382.62"
+417154,C10499,Residential,18,17,8.200000,17,1.000000,1.000000,0,13930.050000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.2 days; current outstanding LKR 13,930.05"
+417342,C10136,SME,18,18,-3.100000,6,0.333333,0.166667,0,0.000000,0,0,11,Irregular payer,"Variable payment pattern: consistency 17%, average delay -3.1 days, late ratio 33%"
+417361,C10547,Residential,18,18,-5.800000,1,0.055556,0.500000,0,0.000000,0,0,1,Regular payer,Average settlement delay -5.8 days; late ratio 6%
+418373,C10235,Residential,18,17,10.300000,17,1.000000,1.000000,0,11115.800000,0,0,18,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.3 days; current outstanding LKR 11,115.80"
+420289,C10349,Residential,18,18,-6.600000,6,0.333333,0.111111,0,0.000000,0,0,8,Irregular payer,"Variable payment pattern: consistency 11%, average delay -6.6 days, late ratio 33%"
+420635,C10400,Residential,18,17,-6.500000,1,0.058824,0.823529,0,3712.340000,0,0,0,Regular payer,"Average settlement delay -6.5 days; late ratio 6%; current outstanding LKR 3,712.34"
+420676,C10565,Residential,18,17,-3.000000,8,0.470588,0.058824,0,13557.020000,0,0,12,Irregular payer,"Variable payment pattern: consistency 6%, average delay -3.0 days, late ratio 47%; current outstanding LKR 13,557.02"
+421579,C10307,SME,18,13,37.900000,10,0.769231,0.153846,4,124018.650000,117,4,39,High-risk non-payer,"4 unpaid past-due bill(s); oldest overdue 117 days; current outstanding LKR 124,018.65"
+421798,C10286,Residential,18,17,9.300000,17,1.000000,1.000000,0,15396.780000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.3 days; current outstanding LKR 15,396.78"
+424050,C10241,Government,18,17,-5.600000,2,0.117647,0.529412,0,114354.670000,0,0,0,Regular payer,"Average settlement delay -5.6 days; late ratio 12%; current outstanding LKR 114,354.67"
+424356,C10412,SME,18,18,-3.700000,5,0.277778,0.222222,0,0.000000,0,1,12,Irregular payer,"Variable payment pattern: consistency 22%, average delay -3.7 days, late ratio 28%"
+424890,C10352,SME,18,17,9.100000,9,0.529412,0.117647,0,30468.410000,0,3,20,Irregular payer,"Variable payment pattern: consistency 12%, average delay 9.1 days, late ratio 53%; current outstanding LKR 30,468.41"
+424931,C10226,Residential,18,17,10.200000,17,1.000000,1.000000,0,5469.270000,0,0,19,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.2 days; current outstanding LKR 5,469.27"
+424957,C10160,Residential,18,17,8.000000,17,1.000000,1.000000,0,6765.850000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.0 days; current outstanding LKR 6,765.85"
+425112,C10223,Government,18,17,-4.500000,3,0.176471,0.411765,0,87001.120000,0,0,0,Regular payer,"Average settlement delay -4.5 days; late ratio 18%; current outstanding LKR 87,001.12"
+426365,C10022,Residential,18,17,9.800000,17,1.000000,1.000000,0,4303.220000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.8 days; current outstanding LKR 4,303.22"
+426772,C10478,Corporate,18,17,4.900000,17,1.000000,0.941176,0,150408.120000,0,0,8,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 4.9 days; current outstanding LKR 150,408.12"
+427760,C10007,Corporate,18,18,-5.800000,2,0.111111,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.8 days; late ratio 11%
+427938,C10541,SME,18,18,5.300000,8,0.444444,0.055556,0,0.000000,0,1,19,Irregular payer,"Variable payment pattern: consistency 6%, average delay 5.3 days, late ratio 44%"
+428016,C10298,Residential,18,12,41.100000,8,0.666667,0.000000,5,58789.890000,148,4,38,High-risk non-payer,"5 unpaid past-due bill(s); oldest overdue 148 days; current outstanding LKR 58,789.89"
+428080,C10130,Residential,18,17,-5.000000,2,0.117647,0.529412,0,13722.040000,0,0,1,Regular payer,"Average settlement delay -5.0 days; late ratio 12%; current outstanding LKR 13,722.04"
+428534,C10358,Residential,18,16,10.700000,16,1.000000,1.000000,1,52535.090000,25,0,22,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.7 days; current outstanding LKR 52,535.09"
+428864,C10082,Residential,18,18,-6.000000,7,0.388889,0.111111,0,0.000000,0,0,8,Irregular payer,"Variable payment pattern: consistency 11%, average delay -6.0 days, late ratio 39%"
+429451,C10058,Residential,18,16,5.600000,16,1.000000,0.937500,1,47465.330000,25,0,16,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 5.6 days; current outstanding LKR 47,465.33"
+430007,C10100,Corporate,18,17,7.500000,17,1.000000,1.000000,0,277426.560000,0,0,16,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.5 days; current outstanding LKR 277,426.56"
+430161,C10076,Residential,18,16,8.900000,16,1.000000,1.000000,1,60017.360000,25,0,19,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.9 days; current outstanding LKR 60,017.36"
+430828,C10427,Residential,18,18,-5.600000,0,0.000000,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.6 days; late ratio 0%
+430982,C10283,Residential,18,18,-9.400000,5,0.277778,0.166667,0,0.000000,0,0,5,Irregular payer,"Variable payment pattern: consistency 17%, average delay -9.4 days, late ratio 28%"
+431195,C10118,Residential,18,14,46.600000,10,0.714286,0.071429,3,43315.190000,87,3,35,High-risk non-payer,"3 unpaid past-due bill(s); oldest overdue 87 days; current outstanding LKR 43,315.19"
+431285,C10490,SME,18,9,36.200000,7,0.777778,0.111111,8,391695.830000,237,5,44,High-risk non-payer,"8 unpaid past-due bill(s); oldest overdue 237 days; current outstanding LKR 391,695.83"
+431850,C10151,Residential,18,18,-6.100000,0,0.000000,0.833333,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.1 days; late ratio 0%
+432018,C10556,Residential,18,17,-6.200000,0,0.000000,0.705882,0,12047.550000,0,0,0,Regular payer,"Average settlement delay -6.2 days; late ratio 0%; current outstanding LKR 12,047.55"
+432271,C10439,Residential,18,17,9.500000,17,1.000000,0.941176,0,6682.840000,0,0,17,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 9.5 days; current outstanding LKR 6,682.84"
+432493,C10055,Residential,18,18,-7.000000,0,0.000000,0.944444,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.0 days; late ratio 0%
+432591,C10220,SME,18,10,22.400000,7,0.700000,0.100000,7,128772.930000,209,3,39,High-risk non-payer,"7 unpaid past-due bill(s); oldest overdue 209 days; current outstanding LKR 128,772.93"
+432742,C10250,Residential,18,17,4.800000,17,1.000000,1.000000,0,9324.370000,0,0,7,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 4.8 days; current outstanding LKR 9,324.37"
+434179,C10475,Residential,18,18,-6.100000,1,0.055556,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.1 days; late ratio 6%
+434760,C10319,Residential,18,17,4.800000,17,1.000000,1.000000,0,11100.340000,0,0,8,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 4.8 days; current outstanding LKR 11,100.34"
+434814,C10493,SME,18,18,-5.700000,0,0.000000,0.833333,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.7 days; late ratio 0%
+436500,C10121,Residential,18,18,-6.700000,1,0.055556,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.7 days; late ratio 6%
+436509,C10244,SME,18,15,44.100000,12,0.800000,0.066667,2,98420.300000,56,5,39,High-risk non-payer,"2 unpaid past-due bill(s); oldest overdue 56 days; current outstanding LKR 98,420.30"
+437353,C10562,Residential,18,17,7.500000,17,1.000000,1.000000,0,4696.850000,0,0,16,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.5 days; current outstanding LKR 4,696.85"
+437388,C10325,SME,18,16,9.100000,16,1.000000,1.000000,1,193794.180000,25,0,20,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.1 days; current outstanding LKR 193,794.18"
+438890,C10355,Residential,18,17,3.600000,8,0.470588,0.117647,0,8218.400000,0,1,14,Irregular payer,"Variable payment pattern: consistency 12%, average delay 3.6 days, late ratio 47%; current outstanding LKR 8,218.40"
+439240,C10598,SME,18,18,-7.000000,1,0.055556,0.888889,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.0 days; late ratio 6%
+439321,C10505,Residential,18,17,-5.600000,1,0.058824,0.588235,0,9266.700000,0,0,1,Regular payer,"Average settlement delay -5.6 days; late ratio 6%; current outstanding LKR 9,266.70"
+439651,C10577,Residential,18,17,-5.200000,1,0.058824,0.588235,0,10814.020000,0,0,1,Regular payer,"Average settlement delay -5.2 days; late ratio 6%; current outstanding LKR 10,814.02"
+440857,C10028,Residential,18,18,-6.800000,0,0.000000,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.8 days; late ratio 0%
+441104,C10379,Residential,18,18,23.200000,11,0.611111,0.000000,0,0.000000,0,4,29,Irregular payer,"Variable payment pattern: consistency 0%, average delay 23.2 days, late ratio 61%"
+441180,C10487,Residential,18,17,8.100000,17,1.000000,0.941176,0,4320.840000,0,0,16,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 8.1 days; current outstanding LKR 4,320.84"
+441441,C10511,SME,18,17,-6.900000,0,0.000000,0.823529,0,42438.510000,0,0,0,Regular payer,"Average settlement delay -6.9 days; late ratio 0%; current outstanding LKR 42,438.51"
+441467,C10472,Residential,18,17,6.500000,17,1.000000,1.000000,0,9260.400000,0,0,15,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.5 days; current outstanding LKR 9,260.40"
+443309,C10109,Residential,18,15,-0.700000,6,0.400000,0.133333,2,42227.670000,56,2,16,High-risk non-payer,"2 unpaid past-due bill(s); oldest overdue 56 days; current outstanding LKR 42,227.67"
+444313,C10064,Residential,18,17,-5.400000,2,0.117647,0.529412,0,6752.370000,0,0,0,Regular payer,"Average settlement delay -5.4 days; late ratio 12%; current outstanding LKR 6,752.37"
+444473,C10214,SME,18,13,19.200000,10,0.769231,0.153846,4,84031.230000,117,4,34,High-risk non-payer,"4 unpaid past-due bill(s); oldest overdue 117 days; current outstanding LKR 84,031.23"
+445745,C10550,Residential,18,18,-5.500000,2,0.111111,0.444444,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.5 days; late ratio 11%
+446438,C10175,Residential,18,18,8.400000,11,0.611111,0.055556,0,0.000000,0,1,17,Irregular payer,"Variable payment pattern: consistency 6%, average delay 8.4 days, late ratio 61%"
+448434,C10559,Residential,18,17,-6.700000,0,0.000000,0.647059,0,6960.580000,0,0,0,Regular payer,"Average settlement delay -6.7 days; late ratio 0%; current outstanding LKR 6,960.58"
+448944,C10040,SME,18,17,-4.000000,6,0.352941,0.117647,0,14912.590000,0,0,12,Irregular payer,"Variable payment pattern: consistency 12%, average delay -4.0 days, late ratio 35%; current outstanding LKR 14,912.59"
+449672,C10310,Residential,18,18,-5.800000,1,0.055556,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.8 days; late ratio 6%
+451173,C10316,Residential,18,14,43.600000,12,0.857143,0.000000,3,45044.490000,87,6,40,High-risk non-payer,"3 unpaid past-due bill(s); oldest overdue 87 days; current outstanding LKR 45,044.49"
+451876,C10496,SME,18,18,-10.600000,7,0.388889,0.055556,0,0.000000,0,0,4,Irregular payer,"Variable payment pattern: consistency 6%, average delay -10.6 days, late ratio 39%"
+452296,C10031,Residential,18,17,-5.600000,2,0.117647,0.588235,0,12354.180000,0,0,1,Regular payer,"Average settlement delay -5.6 days; late ratio 12%; current outstanding LKR 12,354.18"
+452565,C10301,Residential,18,17,5.300000,17,1.000000,1.000000,0,13677.080000,0,0,10,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 5.3 days; current outstanding LKR 13,677.08"
+452772,C10208,Residential,18,18,-5.100000,0,0.000000,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.1 days; late ratio 0%
+452923,C10430,Residential,18,18,14.900000,11,0.611111,0.000000,0,0.000000,0,1,23,Irregular payer,"Variable payment pattern: consistency 0%, average delay 14.9 days, late ratio 61%"
+453269,C10289,Residential,18,18,5.300000,10,0.555556,0.055556,0,0.000000,0,2,18,Irregular payer,"Variable payment pattern: consistency 6%, average delay 5.3 days, late ratio 56%"
+453354,C10157,Residential,18,17,8.200000,17,1.000000,1.000000,0,12344.280000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.2 days; current outstanding LKR 12,344.28"
+453883,C10181,Residential,18,18,-5.300000,2,0.111111,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.3 days; late ratio 11%
+454948,C10457,SME,18,16,-1.300000,7,0.437500,0.000000,1,73187.580000,25,0,15,Irregular payer,"Variable payment pattern: consistency 0%, average delay -1.3 days, late ratio 44%; current outstanding LKR 73,187.58"
+455296,C10238,Corporate,18,18,-6.800000,0,0.000000,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.8 days; late ratio 0%
+455444,C10328,Residential,18,17,8.100000,17,1.000000,1.000000,0,3013.930000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.1 days; current outstanding LKR 3,013.93"
+455519,C10178,Residential,18,13,72.500000,12,0.923077,0.000000,4,59209.700000,117,5,46,High-risk non-payer,"4 unpaid past-due bill(s); oldest overdue 117 days; current outstanding LKR 59,209.70"
+456498,C10172,Corporate,18,17,-6.500000,0,0.000000,0.705882,0,301397.030000,0,0,0,Regular payer,"Average settlement delay -6.5 days; late ratio 0%; current outstanding LKR 301,397.03"
+457422,C10043,Residential,18,16,9.600000,16,1.000000,1.000000,1,20425.120000,25,0,19,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.6 days; current outstanding LKR 20,425.12"
+457433,C10568,Government,18,18,-6.900000,1,0.055556,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.9 days; late ratio 6%
+458082,C10256,Residential,18,16,10.100000,16,1.000000,1.000000,1,21316.870000,25,0,20,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.1 days; current outstanding LKR 21,316.87"
+458800,C10232,SME,18,18,-4.000000,1,0.055556,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -4.0 days; late ratio 6%
+459177,C10049,Residential,18,17,0.700000,8,0.470588,0.176471,0,6484.850000,0,1,11,Irregular payer,"Variable payment pattern: consistency 18%, average delay 0.7 days, late ratio 47%; current outstanding LKR 6,484.85"
+459638,C10322,Residential,18,17,10.100000,17,1.000000,1.000000,0,9258.030000,0,0,18,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 10.1 days; current outstanding LKR 9,258.03"
+459929,C10508,Residential,18,18,-5.700000,2,0.111111,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.7 days; late ratio 11%
+460068,C10523,Government,18,17,6.000000,17,1.000000,1.000000,0,134546.780000,0,0,15,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.0 days; current outstanding LKR 134,546.78"
+460637,C10247,Residential,18,17,7.500000,17,1.000000,1.000000,0,11984.620000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.5 days; current outstanding LKR 11,984.62"
+461213,C10184,Residential,18,17,6.500000,17,1.000000,1.000000,0,7003.770000,0,0,15,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.5 days; current outstanding LKR 7,003.77"
+461953,C10148,SME,18,17,6.000000,17,1.000000,1.000000,0,21094.070000,0,0,14,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.0 days; current outstanding LKR 21,094.07"
+461993,C10154,Residential,18,17,4.900000,17,1.000000,1.000000,0,11424.170000,0,0,9,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 4.9 days; current outstanding LKR 11,424.17"
+462493,C10391,SME,18,18,-5.900000,1,0.055556,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.9 days; late ratio 6%
+463092,C10295,Residential,18,17,-3.500000,3,0.176471,0.411765,0,3390.570000,0,0,0,Regular payer,"Average settlement delay -3.5 days; late ratio 18%; current outstanding LKR 3,390.57"
+463624,C10127,Residential,18,18,26.600000,12,0.666667,0.055556,0,0.000000,0,2,25,Irregular payer,"Variable payment pattern: consistency 6%, average delay 26.6 days, late ratio 67%"
+463653,C10292,Residential,18,18,-5.900000,1,0.055556,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.9 days; late ratio 6%
+463788,C10346,Residential,18,18,-7.200000,1,0.055556,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.2 days; late ratio 6%
+465909,C10394,Residential,18,17,6.000000,17,1.000000,1.000000,0,11690.660000,0,0,12,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.0 days; current outstanding LKR 11,690.66"
+466307,C10544,SME,18,16,9.300000,16,1.000000,1.000000,1,217232.190000,25,0,19,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.3 days; current outstanding LKR 217,232.19"
+466562,C10406,Residential,18,17,6.600000,17,1.000000,1.000000,0,4490.170000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.6 days; current outstanding LKR 4,490.17"
+467391,C10115,Residential,18,17,-6.100000,1,0.058824,0.764706,0,10419.360000,0,0,0,Regular payer,"Average settlement delay -6.1 days; late ratio 6%; current outstanding LKR 10,419.36"
+467839,C10046,SME,18,17,-5.600000,0,0.000000,0.647059,0,41281.950000,0,0,0,Regular payer,"Average settlement delay -5.6 days; late ratio 0%; current outstanding LKR 41,281.95"
+468522,C10469,Residential,18,17,8.700000,17,1.000000,1.000000,0,11807.220000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.7 days; current outstanding LKR 11,807.22"
+469329,C10586,Corporate,18,17,-4.300000,2,0.117647,0.764706,0,357291.730000,0,0,0,Regular payer,"Average settlement delay -4.3 days; late ratio 12%; current outstanding LKR 357,291.73"
+469615,C10397,Corporate,18,17,5.300000,17,1.000000,0.941176,0,157183.860000,0,0,11,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 5.3 days; current outstanding LKR 157,183.86"
+470292,C10229,Government,18,17,-4.700000,6,0.352941,0.176471,0,12653.480000,0,0,10,Irregular payer,"Variable payment pattern: consistency 18%, average delay -4.7 days, late ratio 35%; current outstanding LKR 12,653.48"
+470468,C10538,Residential,18,16,16.300000,10,0.625000,0.125000,1,10977.640000,25,2,26,Irregular payer,"Variable payment pattern: consistency 12%, average delay 16.3 days, late ratio 62%; current outstanding LKR 10,977.64"
+470678,C10133,Residential,18,17,-6.700000,1,0.058824,0.882353,0,10265.920000,0,0,0,Regular payer,"Average settlement delay -6.7 days; late ratio 6%; current outstanding LKR 10,265.92"
+470686,C10010,Residential,18,13,46.800000,9,0.692308,0.076923,4,36313.890000,117,5,38,High-risk non-payer,"4 unpaid past-due bill(s); oldest overdue 117 days; current outstanding LKR 36,313.89"
+470855,C10271,Residential,18,17,5.200000,17,1.000000,1.000000,0,4203.870000,0,0,9,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 5.2 days; current outstanding LKR 4,203.87"
+471066,C10370,Residential,18,17,-4.300000,2,0.117647,0.647059,0,3407.500000,0,0,0,Regular payer,"Average settlement delay -4.3 days; late ratio 12%; current outstanding LKR 3,407.50"
+471200,C10571,Residential,18,16,-1.200000,8,0.500000,0.062500,1,11503.210000,25,0,16,Irregular payer,"Variable payment pattern: consistency 6%, average delay -1.2 days, late ratio 50%; current outstanding LKR 11,503.21"
+472132,C10259,Residential,18,17,-0.200000,9,0.529412,0.058824,0,9235.290000,0,0,15,Irregular payer,"Variable payment pattern: consistency 6%, average delay -0.2 days, late ratio 53%; current outstanding LKR 9,235.29"
+472603,C10073,Residential,18,17,-6.200000,0,0.000000,0.588235,0,8685.060000,0,0,0,Regular payer,"Average settlement delay -6.2 days; late ratio 0%; current outstanding LKR 8,685.06"
+472692,C10595,SME,18,11,44.800000,11,1.000000,0.000000,6,210744.500000,178,4,45,High-risk non-payer,"6 unpaid past-due bill(s); oldest overdue 178 days; current outstanding LKR 210,744.50"
+472845,C10337,Corporate,18,9,17.100000,7,0.777778,0.111111,8,3394599.410000,237,3,37,High-risk non-payer,"8 unpaid past-due bill(s); oldest overdue 237 days; current outstanding LKR 3,394,599.41"
+473792,C10529,SME,18,17,14.800000,11,0.647059,0.000000,0,12672.530000,0,2,24,Irregular payer,"Variable payment pattern: consistency 0%, average delay 14.8 days, late ratio 65%; current outstanding LKR 12,672.53"
+474085,C10466,Government,18,18,-6.300000,0,0.000000,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.3 days; late ratio 0%
+474668,C10436,Residential,18,18,-6.100000,0,0.000000,0.666667,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.1 days; late ratio 0%
+474847,C10142,Residential,18,18,-7.800000,0,0.000000,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.8 days; late ratio 0%
+475525,C10145,Residential,18,17,8.900000,17,1.000000,1.000000,0,6461.350000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.9 days; current outstanding LKR 6,461.35"
+475880,C10442,SME,18,18,-6.000000,1,0.055556,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.0 days; late ratio 6%
+475914,C10364,Residential,18,17,-4.600000,1,0.058824,0.705882,0,9790.940000,0,0,1,Regular payer,"Average settlement delay -4.6 days; late ratio 6%; current outstanding LKR 9,790.94"
+476503,C10463,Residential,18,18,-5.700000,1,0.055556,0.611111,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.7 days; late ratio 6%
+476569,C10388,Residential,18,18,-6.900000,1,0.055556,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.9 days; late ratio 6%
+477110,C10070,SME,18,18,-7.100000,0,0.000000,0.555556,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.1 days; late ratio 0%
+477128,C10079,Residential,18,14,63.100000,13,0.928571,0.071429,3,33949.530000,87,4,44,High-risk non-payer,"3 unpaid past-due bill(s); oldest overdue 87 days; current outstanding LKR 33,949.53"
+477924,C10445,Government,18,18,0.100000,7,0.388889,0.111111,0,0.000000,0,2,13,Irregular payer,"Variable payment pattern: consistency 11%, average delay 0.1 days, late ratio 39%"
+477992,C10418,Residential,18,10,18.600000,8,0.800000,0.000000,7,34044.800000,209,3,38,High-risk non-payer,"7 unpaid past-due bill(s); oldest overdue 209 days; current outstanding LKR 34,044.80"
+480173,C10580,SME,18,11,9.700000,6,0.545455,0.000000,6,200673.590000,178,3,31,High-risk non-payer,"6 unpaid past-due bill(s); oldest overdue 178 days; current outstanding LKR 200,673.59"
+481183,C10451,Residential,18,17,8.600000,17,1.000000,1.000000,0,7638.390000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.6 days; current outstanding LKR 7,638.39"
+481416,C10526,Residential,18,16,12.800000,12,0.750000,0.062500,1,9055.410000,25,2,26,Irregular payer,"Variable payment pattern: consistency 6%, average delay 12.8 days, late ratio 75%; current outstanding LKR 9,055.41"
+482719,C10094,Residential,18,12,20.300000,8,0.666667,0.083333,5,22025.640000,148,3,34,High-risk non-payer,"5 unpaid past-due bill(s); oldest overdue 148 days; current outstanding LKR 22,025.64"
+484607,C10502,Residential,18,11,68.000000,9,0.818182,0.000000,6,56716.930000,178,4,45,High-risk non-payer,"6 unpaid past-due bill(s); oldest overdue 178 days; current outstanding LKR 56,716.93"
+484696,C10199,SME,18,18,8.400000,10,0.555556,0.111111,0,0.000000,0,2,19,Irregular payer,"Variable payment pattern: consistency 11%, average delay 8.4 days, late ratio 56%"
+485180,C10037,Residential,18,17,3.500000,9,0.529412,0.117647,0,6875.250000,0,1,16,Irregular payer,"Variable payment pattern: consistency 12%, average delay 3.5 days, late ratio 53%; current outstanding LKR 6,875.25"
+485477,C10268,Residential,18,18,3.000000,11,0.611111,0.277778,0,0.000000,0,1,16,Irregular payer,"Variable payment pattern: consistency 28%, average delay 3.0 days, late ratio 61%"
+485649,C10196,Residential,18,15,50.700000,12,0.800000,0.000000,2,13743.580000,56,4,37,High-risk non-payer,"2 unpaid past-due bill(s); oldest overdue 56 days; current outstanding LKR 13,743.58"
+485717,C10583,Residential,18,17,-4.800000,1,0.058824,0.647059,0,3938.640000,0,0,0,Regular payer,"Average settlement delay -4.8 days; late ratio 6%; current outstanding LKR 3,938.64"
+486163,C10460,Residential,18,17,8.500000,17,1.000000,1.000000,0,8302.420000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.5 days; current outstanding LKR 8,302.42"
+486374,C10169,Residential,18,17,-6.400000,1,0.058824,0.352941,0,6241.600000,0,0,0,Regular payer,"Average settlement delay -6.4 days; late ratio 6%; current outstanding LKR 6,241.60"
+486752,C10340,Residential,18,17,9.200000,17,1.000000,1.000000,0,3673.570000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 9.2 days; current outstanding LKR 3,673.57"
+486951,C10601,SME,18,17,-6.100000,1,0.058824,0.647059,0,9837.870000,0,0,0,Regular payer,"Average settlement delay -6.1 days; late ratio 6%; current outstanding LKR 9,837.87"
+487538,C10592,Government,18,17,-7.200000,0,0.000000,0.529412,0,67120.540000,0,0,0,Regular payer,"Average settlement delay -7.2 days; late ratio 0%; current outstanding LKR 67,120.54"
+487684,C10124,Residential,18,12,6.500000,7,0.583333,0.083333,5,70602.310000,148,2,29,High-risk non-payer,"5 unpaid past-due bill(s); oldest overdue 148 days; current outstanding LKR 70,602.31"
+487782,C10481,Residential,18,12,38.000000,10,0.833333,0.083333,5,46799.450000,148,6,40,High-risk non-payer,"5 unpaid past-due bill(s); oldest overdue 148 days; current outstanding LKR 46,799.45"
+488039,C10034,Government,18,18,-7.100000,0,0.000000,0.722222,0,0.000000,0,0,0,Regular payer,Average settlement delay -7.1 days; late ratio 0%
+488259,C10193,Residential,18,18,10.300000,11,0.611111,0.111111,0,0.000000,0,3,21,Irregular payer,"Variable payment pattern: consistency 11%, average delay 10.3 days, late ratio 61%"
+488501,C10424,Corporate,18,18,-5.800000,0,0.000000,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.8 days; late ratio 0%
+490422,C10019,Residential,18,17,7.300000,17,1.000000,1.000000,0,14662.140000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 7.3 days; current outstanding LKR 14,662.14"
+491303,C10331,Residential,18,13,32.200000,12,0.923077,0.076923,4,37199.230000,117,5,41,High-risk non-payer,"4 unpaid past-due bill(s); oldest overdue 117 days; current outstanding LKR 37,199.23"
+492214,C10574,Residential,18,14,12.800000,9,0.642857,0.071429,3,55205.110000,87,3,31,High-risk non-payer,"3 unpaid past-due bill(s); oldest overdue 87 days; current outstanding LKR 55,205.11"
+492778,C10091,SME,18,18,-6.300000,1,0.055556,0.833333,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.3 days; late ratio 6%
+493447,C10025,Corporate,18,18,-6.700000,0,0.000000,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -6.7 days; late ratio 0%
+493872,C10484,Residential,18,10,25.400000,7,0.700000,0.200000,7,113279.710000,209,4,39,High-risk non-payer,"7 unpaid past-due bill(s); oldest overdue 209 days; current outstanding LKR 113,279.71"
+494163,C10343,Residential,18,18,-5.700000,1,0.055556,0.777778,0,0.000000,0,0,0,Regular payer,Average settlement delay -5.7 days; late ratio 6%
+494811,C10139,Residential,18,17,-3.400000,7,0.411765,0.176471,0,4988.720000,0,0,11,Irregular payer,"Variable payment pattern: consistency 18%, average delay -3.4 days, late ratio 41%; current outstanding LKR 4,988.72"
+495448,C10211,Residential,18,17,-7.000000,0,0.000000,0.882353,0,7306.610000,0,0,0,Regular payer,"Average settlement delay -7.0 days; late ratio 0%; current outstanding LKR 7,306.61"
+495561,C10187,SME,18,17,5.500000,17,1.000000,1.000000,0,15667.630000,0,0,11,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 5.5 days; current outstanding LKR 15,667.63"
+495673,C10016,SME,18,16,33.800000,12,0.750000,0.062500,1,47891.850000,25,6,37,Irregular payer,"Variable payment pattern: consistency 6%, average delay 33.8 days, late ratio 75%; current outstanding LKR 47,891.85"
+495748,C10334,Residential,18,16,-4.300000,6,0.375000,0.062500,1,8928.040000,25,0,12,Irregular payer,"Variable payment pattern: consistency 6%, average delay -4.3 days, late ratio 38%; current outstanding LKR 8,928.04"
+496434,C10367,Residential,18,17,8.600000,17,1.000000,1.000000,0,12842.310000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 8.6 days; current outstanding LKR 12,842.31"
+498038,C10376,Residential,18,17,5.200000,17,1.000000,1.000000,0,11775.010000,0,0,8,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 5.2 days; current outstanding LKR 11,775.01"
+498548,C10514,Residential,18,18,0.200000,10,0.555556,0.166667,0,0.000000,0,0,15,Irregular payer,"Variable payment pattern: consistency 17%, average delay 0.2 days, late ratio 56%"
+498771,C10280,Residential,18,17,4.900000,17,1.000000,0.941176,0,4121.120000,0,0,9,Predictable late payer,"Consistent payment timing (94% within ±3 days); average delay 4.9 days; current outstanding LKR 4,121.12"
+498994,C10013,Residential,18,17,6.800000,17,1.000000,1.000000,0,6414.010000,0,0,17,Predictable late payer,"Consistent payment timing (100% within ±3 days); average delay 6.8 days; current outstanding LKR 6,414.01"

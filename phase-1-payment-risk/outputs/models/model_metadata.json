@@ -1,0 +1,28 @@
+{
+  "selected_model": "RandomForest",
+  "target": "unpaid_after_30_days",
+  "target_definition": "Invoice has an unpaid balance greater than 0.01 30 days after its due date.",
+  "prediction_time": "Start of invoice issue date",
+  "features": [
+    "invoice_amount",
+    "payment_terms_days",
+    "history_invoice_count",
+    "total_outstanding",
+    "total_overdue_amount",
+    "overdue_invoice_count",
+    "max_overdue_days",
+    "paid_invoice_count",
+    "average_payment_delay",
+    "late_payment_ratio",
+    "has_paid_history",
+    "customer_type",
+    "service_type",
+    "package"
+  ],
+  "validation_start": "2025-08-29",
+  "test_start": "2025-10-28",
+  "classification_threshold": 0.5,
+  "final_training_rows": 90000,
+  "test_rows": 20000,
+  "synthetic_data": true
+}
