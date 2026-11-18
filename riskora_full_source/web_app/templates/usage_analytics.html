@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Usage Analytics{% endblock %}
+{% block breadcrumb %}Usage Analytics{% endblock %}
+
+{% block content %}
+
+<div class="page-head">
+  <div>
+    <p class="eyebrow">CUSTOMER USAGE INTELLIGENCE</p>
+    <h1>Usage Analytics</h1>
+    <p class="subheading">
+      Analysis of masked SLT network usage records,
+      subscriber activity and service offers.
+    </p>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Real masked usage sample:</strong>
+  This analysis uses the locally stored usage dataset.
+  It represents a single usage date, not a monthly trend.
+  Usage accounts are not linked to synthetic customer
+  credit scores or non-payment predictions.
+</div>
+
+<!-- USAGE SUMMARY -->
+
+<div class="stats-grid">
+
+  <div class="stat-card">
+    <span class="stat-label">Usage Records</span>
+    <strong>{{ "{:,}".format(usage.records) }}</strong>
+    <small>Session records in sample</small>
+    <span class="stat-icon">▦</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Unique Accounts</span>
+    <strong>{{ "{:,}".format(usage.accounts) }}</strong>
+    <small>Masked account identifiers</small>
+    <span class="stat-icon">◈</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Unique Subscribers</span>
+    <strong>{{ "{:,}".format(usage.subscribers) }}</strong>
+    <small>Masked subscriber identifiers</small>
+    <span class="stat-icon">◎</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Service Offers</span>
+    <strong>{{ usage.offers }}</strong>
+    <small>Distinct offer names</small>
+    <span class="stat-icon">◇</span>
+  </div>
+
+</div>
+
+<!-- USAGE VOLUMES -->
+
+<section class="panel">
+  <div class="panel-title">
+    <div>
+      <h2>Network Usage Volumes</h2>
+      <p>
+        Reported input, output and total byte fields
+      </p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <span class="stat-label">Input Volume</span>
+      <strong>{{ "%.2f"|format(usage.input_gib) }} GiB</strong>
+      <small>cc_input_octets_bytes</small>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-label">Output Volume</span>
+      <strong>{{ "%.2f"|format(usage.output_gib) }} GiB</strong>
+      <small>cc_output_octets_bytes</small>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-label">Reported Total Field</span>
+      <strong>{{ "%.2f"|format(usage.total_gib) }} GiB</strong>
+      <small>cc_total_octets_bytes</small>
+    </div>
+
+    <div class="stat-card">
+      <span class="stat-label">Usage Date</span>
+      <strong>{{ usage.usage_date }}</strong>
+      <small>Date from the ymd column</small>
+    </div>
+
+  </div>
+
+  <p class="explain-text">
+    The reported total usage field does not reconcile
+    with the sum of input and output volumes.
+    These metrics are therefore shown separately
+    until their definitions are confirmed by SLT.
+  </p>
+</section>
+
+<!-- OFFER ANALYSIS -->
+
+<section class="panel table-panel">
+
+  <div class="panel-title">
+    <div>
+      <h2>Most Common Service Offers</h2>
+      <p>Top offers ranked by usage-record count</p>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Offer Name</th>
+          <th>Usage Records</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for offer in usage.top_offers %}
+        <tr>
+          <td>{{ offer.name }}</td>
+          <td>{{ "{:,}".format(offer.records) }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="2">No offer data available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+{% endblock %}

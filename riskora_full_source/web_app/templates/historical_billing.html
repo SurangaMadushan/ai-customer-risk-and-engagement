@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Historical billing{% endblock %}
+{% block breadcrumb %}Historical billing{% endblock %}
+{% block content %}
+<style>
+  .hb-chips {display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px;}
+  .hb-chip {padding:8px 12px;border:1px solid #cbd6e4;border-radius:999px;text-decoration:none;color:#235075;background:#fff;font-weight:600;}
+  .hb-chip.active {background:#174a79;color:white;border-color:#174a79;}
+  .hb-bartrack {background:#e6edf4;height:12px;border-radius:12px;overflow:hidden;min-width:80px;}
+  .hb-barfill {height:100%;background:#1684a1;border-radius:12px;}
+  .hb-table {width:100%;border-collapse:collapse;}
+  .hb-table th,.hb-table td {padding:11px 10px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:0.91rem;}
+  .hb-table th {background:#f3f7fb;color:#274a66;}
+  .hb-table td.num,.hb-table th.num {text-align:right;font-variant-numeric:tabular-nums;}
+  .hb-scroll {overflow-x:auto;}
+  .hb-note {padding:14px 18px;border:1px solid #d9e2eb;border-radius:10px;background:#f6f9fc;line-height:1.65;margin:14px 0 24px;}
+  .hb-legend {font-size:.89rem;color:#566879;margin-top:9px;}
+  .hb-empty {color:#71531d;padding:14px;background:#fff7e5;border-radius:8px;}
+</style>
+<div class="page-head"><div>
+  <p class="eyebrow">PRIVATE RESEARCH · AGGREGATED DATA</p>
+  <h1>Historical billing insights</h1>
+  <p class="subheading">Actual masked billing data: aggregate patterns only. Separate from our 200-customer synthetic demo.</p>
+</div></div>
+<div class="hb-note">
+  <strong>Descriptive research, not a validated credit score.</strong>
+  A positive outstanding-debt row does not establish default, an unpaid bill, or a suspension.
+  The amount fields may be snapshots, and masked account IDs are not joined between years.
+  The 2026 source covers only part of the year; 2025 was not supplied.
+</div>
+{% if not historical_available %}
+<div class="hb-empty"><strong>Historical summary not found.</strong> Run <code>python 29_prepare_account_month_features.py</code> in full mode first, then refresh this page. The website remains usable with dummy data.</div>
+{% endif %}
+<div class="stats-grid">
+  <section class="stat-card"><span class="stat-label">Billing records represented</span><strong>{{ '{:,}'.format(total_billing_rows) if historical_available else '—' }}</strong><small>Not necessarily unique invoices</small></section>
+  <section class="stat-card"><span class="stat-label">Account-month observations</span><strong>{{ '{:,}'.format(total_account_months) if historical_available else '—' }}</strong><small>Not distinct customers</small></section>
+  <section class="stat-card"><span class="stat-label">Years available</span><strong>{{ total_years if historical_available else '—' }}</strong><small>2021–2024 and 2026, if reports available</small></section>
+  <section class="stat-card"><span class="stat-label">Account-months with positive outstanding indicator</span><strong>{{ '{:,}'.format(total_positive_account_months) if historical_available else '—' }}</strong><small>Descriptive indicator; not confirmed non-payment</small></section>
+</div>
+<section class="panel table-panel">
+  <div class="panel-title"><div><h2>Historical coverage by year</h2><p>Year-specific account totals must not be added across years to infer unique customers.</p></div></div>
+  {% if years %}<div class="hb-scroll"><table class="hb-table">
+  <thead><tr><th>Year</th><th class="num">Billing rows</th><th class="num">Account-month rows</th><th class="num">Distinct accounts in year</th><th class="num">Positive outstanding account-months</th><th class="num">Share</th></tr></thead>
+  <tbody>{% for r in years %}<tr>
+    <td><strong>{{ r.year }}</strong>{% if r.year == '2026' %} <small>(partial)</small>{% endif %}</td>
+    <td class="num">{{ '{:,}'.format(r.billing_rows) }}</td>
+    <td class="num">{{ '{:,}'.format(r.account_months) }}</td>
+    <td class="num">{{ '{:,}'.format(r.distinct_accounts) }}</td>
+    <td class="num">{{ '{:,}'.format(r.positive_account_months) }}</td>
+    <td class="num">{{ '%.2f'|format(r.positive_share) }}%</td>
+  </tr>{% endfor %}</tbody></table></div>
+  {% else %}<p class="hb-empty">Run the Step 29 full report to populate annual figures.</p>{% endif %}
+</section>
+<section class="panel table-panel">
+  <div class="panel-title"><div><h2>Monthly activity</h2><p>Select a year to see account-month activity and positive-outstanding indicators.</p></div></div>
+  {% if monthly_available %}
+  <div class="hb-chips" aria-label="Choose historical year">
+    {% for r in years %}<a class="hb-chip{% if r.year == selected_year %} active{% endif %}" href="{{ url_for('historical_billing', year=r.year) }}" {% if r.year == selected_year %}aria-current="page"{% endif %}>{{ r.year }}{% if r.year == '2026' %} · partial{% endif %}</a>{% endfor %}
+  </div>
+  {% if months %}<div class="hb-scroll"><table class="hb-table">
+  <thead><tr><th>Month</th><th class="num">Billing rows</th><th class="num">Account-months</th><th style="min-width:135px">Relative monthly volume</th><th class="num">Positive-outstanding account-months</th><th class="num">Share</th></tr></thead>
+  <tbody>{% for m in months %}<tr>
+    <td><strong>{{ m.month }}</strong></td><td class="num">{{ '{:,}'.format(m.billing_rows) }}</td>
+    <td class="num">{{ '{:,}'.format(m.account_months) }}</td>
+    <td><div class="hb-bartrack" role="img" aria-label="Relative account-month volume {{ '%.1f'|format(m.bar_width) }} percent of annual monthly maximum"><div class="hb-barfill" style="width:{{ m.bar_width }}%"></div></div></td>
+    <td class="num">{{ '{:,}'.format(m.positive_account_months) }}</td>
+    <td class="num">{{ '%.2f'|format(m.positive_share) }}%</td>
+  </tr>{% endfor %}</tbody></table></div>
+  <p class="hb-legend">Bars compare monthly account-month counts within the selected year. "Positive outstanding" means at least one positive <code>outstanding_debt_amt</code> row in that account-month, not a default label.</p>
+  {% else %}<p class="hb-empty">There are no monthly aggregate observations for this year.</p>{% endif %}
+  {% else %}<p class="hb-empty">Monthly aggregate CSV is missing. Run <code>python 29_prepare_account_month_features.py</code> in full mode, then refresh.</p>{% endif %}
+</section>
+<div class="hb-note"><strong>Data and safety note:</strong> This page reads aggregate CSVs from <code>outputs/private_audit</code>, not customer-level records or raw Parquet files. It is intended only for the local, staff-authenticated prototype. Do not deploy this Flask development server publicly or upload historical source data to a public repository. Creditworthiness factors and weights remain provisional pending verified settlement dates and future outcomes.</div>
+{% endblock %}

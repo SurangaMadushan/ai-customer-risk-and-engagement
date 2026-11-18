@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Not found{% endblock %}
+{% block breadcrumb %}Not found{% endblock %}
+{% block content %}
+<div class="not-found"><div class="not-found-icon">⌕</div><h1>Customer or page not found</h1><p>Check the customer ID or account number and try again.</p><a class="btn btn-primary" href="{{ url_for('customers') }}">Back to customer search</a></div>
+{% endblock %}

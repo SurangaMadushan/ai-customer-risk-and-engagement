@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="same-origin">
+  <title>{% block title %}Customer Intelligence{% endblock %} · Riskora Demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="{{ url_for('index') }}">
+        <span class="brand-mark">R</span>
+        <span class="brand-copy"><strong>Riskora</strong><small>Customer Risk &amp; Engagement</small></span>
+      </a>
+      <div class="nav-heading">WORKSPACE</div>
+      <nav class="nav-items" aria-label="Primary navigation">
+        <a class="nav-link {% if active == 'overview' %}selected{% endif %}" href="{{ url_for('index') }}"><span class="nav-icon">▦</span> Overview</a>
+        {% if staff_identity and staff_identity.role in ['admin','analyst'] %}
+        <a class="nav-link {% if active == 'customers' %}selected{% endif %}" href="{{ url_for('customers') }}"><span class="nav-icon">⌕</span> Customer search</a>
+        {% endif %}
+        {% if staff_identity and staff_identity.role in ['admin','analyst'] %}
+        <a class="nav-link {% if active == 'creditworthiness' %}selected{% endif %}" href="{{ url_for('creditworthiness') }}"><span class="nav-icon">◈</span> Creditworthiness</a>
+        <a class="nav-link {% if active == 'credit_data' %}selected{% endif %}" href="{{ url_for('credit_data') }}"><span class="nav-icon">&#9671;</span> Credit Score &amp; Rank</a>
+        {% endif %}
+        {% if staff_identity and staff_identity.role in ['admin', 'analyst'] %}
+        <a class="nav-link {% if active == 'risk_prediction' %}selected{% endif %}" href="{{ url_for('risk_prediction') }}"><span class="nav-icon">◉</span> Risk Prediction</a>
+        {% endif %}
+        {% if staff_identity and staff_identity.role in ['admin', 'analyst'] %}
+        <a class="nav-link {% if active == 'usage' %}selected{% endif %}" href="{{ url_for('usage_analytics') }}"><span class="nav-icon">▥</span> Usage Analytics</a>
+        {% endif %}
+        {% if staff_identity and staff_identity.role in ['admin','analyst'] %}
+        <a class="nav-link {% if active == 'collections' %}selected{% endif %}" href="{{ url_for('collections') }}"><span class="nav-icon">☷</span> Collections</a>
+        {% endif %}
+        {% if staff_identity %}
+        <a class="nav-link {% if active == 'validation' %}selected{% endif %}" href="{{ url_for('validation_status') }}"><span class="nav-icon">▤</span> Model validation</a>
+        {% endif %}
+        {% if staff_identity and staff_identity.role in ['admin','analyst'] %}
+        <a class="nav-link {% if active == 'historical' %}selected{% endif %}" href="{{ url_for('historical_billing') }}"><span class="nav-icon">▥</span> Historical billing</a>
+        {% endif %}
+      </nav>
+      {% if staff_identity %}
+      <div class="sidebar-foot" style="border-top:1px solid #dae3ef;padding-top:14px;">
+        <div style="font-weight:700;word-break:break-word;">{{ staff_identity.username }}</div>
+        <small>Staff role: {{ staff_identity.role|capitalize }}</small>
+        <form method="post" action="{{ url_for('staff_auth.logout') }}" style="margin-top:10px;">
+          <input type="hidden" name="csrf_token" value="{{ staff_logout_csrf }}">
+          <button type="submit" style="padding:7px 12px;border:1px solid #b7c7d9;border-radius:7px;cursor:pointer;background:#fff;color:#143e67;">Sign out</button>
+        </form>
+      </div>
+      {% endif %}
+      <div class="sidebar-foot">
+        <span class="status-dot"></span> Local demo + private aggregate research
+        <small>Human approval required for all collection actions.</small>
+      </div>
+    </aside>
+    <div class="main-panel">
+      <header class="topbar">
+        <button id="sidebarToggle" class="mobile-toggle" type="button" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumbs">Riskora / Phase 1 / <strong>{% block breadcrumb %}Overview{% endblock %}</strong></div>
+        {% if staff_identity and staff_identity.role in ['admin','analyst'] %}
+        <form class="top-search" action="{{ url_for('customers') }}" method="get" role="search">
+          <label class="sr-only" for="globalSearch">Search customer ID or account</label>
+          <span class="search-icon">⌕</span>
+          <input id="globalSearch" name="q" placeholder="Search customer ID or account..." maxlength="80" autocomplete="off" value="{{ request.args.get('q', '') if active == 'customers' else '' }}">
+          <button type="submit">Search</button>
+        </form>
+        {% endif %}
+        <span class="prototype-tag">Prototype</span>
+      </header>
+      <main class="content">
+        {% block content %}{% endblock %}
+      </main>
+      <footer class="footer">SLT Customer Payment Intelligence · Synthetic customer demo + private aggregate research · Internal development prototype only · Not an approved credit rating</footer>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Collections{% endblock %}
+{% block breadcrumb %}Collection follow-up{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">FOLLOW-UP MANAGEMENT</p><h1>Collection recommendations</h1><p class="subheading">Proposed follow-up priority with a clear explanation for each customer.</p></div></div>
+<div class="notice"><strong>Human decision required:</strong> Rules are illustrative and do not trigger phone calls, account changes, disconnections, or automated actions.</div>
+<section class="panel"><form class="filters" action="{{ url_for('collections') }}" method="get"><label>Recommended action<select name="action"><option value="">All recommendations</option>{% for a in ['No follow-up', 'Normal follow-up', 'Priority follow-up'] %}<option value="{{ a }}" {% if action == a %}selected{% endif %}>{{ a }}</option>{% endfor %}</select></label><button type="submit" class="btn btn-primary">Apply filter</button><a class="btn btn-soft" href="{{ url_for('collections') }}">Clear</a></form></section>
+<section class="panel table-panel"><div class="panel-title"><div><h2>Collection review list <span class="count-pill">{{ count }}</span></h2><p>Sorted by current overdue days and outstanding balance</p></div></div><div class="table-scroll"><table><thead><tr><th>Customer</th><th>Account</th><th>Behaviour</th><th>Current status</th><th>Action</th><th>Reason</th><th></th></tr></thead><tbody>
+{% for c in rows %}<tr><td><strong>{{ c.customer_id }}</strong></td><td>{{ c.account_no }}</td><td>{{ c.behaviour_classification|clean }}</td><td>{% if c.is_overdue %}{{ c.current_overdue_days|number }} days overdue<br><small class="table-sub">{{ c.current_outstanding_LKR|money }}</small>{% else %}<span class="muted">No overdue bill</span>{% endif %}</td><td><span class="chip {% if c.recommended_action == 'Priority follow-up' %}chip-red{% elif c.recommended_action == 'Normal follow-up' %}chip-orange{% else %}chip-green{% endif %}">{{ c.recommended_action }}</span></td><td class="reason-cell">{{ c.recommendation_reason|clean }}</td><td><a href="{{ url_for('customer_profile', account_no=c.account_no) }}">View →</a></td></tr>
+{% else %}<tr><td class="empty-row" colspan="7">No accounts for this filter.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

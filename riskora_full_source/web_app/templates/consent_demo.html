@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Consent & OTP Simulator{% endblock %}
+{% block breadcrumb %}Consent simulator{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">STEP 17 · LOCAL SIMULATION</p><h1>Customer consent & OTP</h1>
+<p class="subheading">Practice scoped information requests with simulated decisions and dummy data.</p></div></div>
+<div class="notice"><strong>Dummy-data simulation only.</strong> This page uses signed-in STAFF test accounts and shows the test code to the requester. Approval is only simulated; it can unlock a limited dummy-data preview. It does not contact or verify a real customer or authorize real disclosure.</div>
+{% if message %}<div class="notice">{{ message }}</div>{% endif %}
+{% if detail %}
+<section class="panel" style="max-width:860px;padding:24px">
+  <h2>Consent request</h2>
+  <p><strong>Request ID:</strong> <code>{{ detail.request_id }}</code></p>
+  <p><strong>Account:</strong> {{ detail.account_no }} · <strong>Requester:</strong> {{ detail.requester }}</p>
+  <p><strong>Purpose:</strong> {{ detail.purpose }}</p>
+  <p><strong>Requested data:</strong> {{ detail.data_scope }}</p>
+  <p><strong>Status:</strong> {{ detail.status }}</p>
+  {% if demo_code %}<div class="notice"><strong>TEST CODE ONLY:</strong> <code style="font-size:22px">{{ demo_code }}</code><br>
+  The simulator shows this once instead of sending an SMS. Never show a real customer OTP to a staff requester.</div>{% endif %}
+  {% if detail.status == 'Pending' and detail.attempts < 3 %}
+  <h3>Simulate customer decision</h3>
+  <form action="{{ url_for('consent_demo.decide', request_id=detail.request_id) }}" method="post" style="display:grid;gap:12px;max-width:480px">
+    <input type="hidden" name="csrf_token" value="{{ csrf }}">
+    <label>Simulated six-digit code<input name="otp" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required autocomplete="off" style="display:block;width:100%;padding:12px"></label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-primary" type="submit" name="decision" value="Approved">Approve request</button>
+      <button class="btn btn-soft" type="submit" name="decision" value="Rejected">Reject request</button>
+    </div>
+  </form>
+  {% endif %}
+  {% if detail.status == 'Approved' and detail.expires_ts >= now and staff_identity and detail.requester == staff_identity.username %}
+  <p style="margin-top:20px"><a class="btn btn-primary" href="{{ url_for('consent_access.disclosure', request_id=detail.request_id) }}">View scoped dummy-data preview →</a></p>
+  {% elif detail.status == 'Approved' and detail.expires_ts < now %}
+  <p class="notice">The approved demo request has expired. Create a new request to test access again.</p>
+  {% endif %}
+  <p style="margin-top:20px"><a href="{{ url_for('consent_demo.index') }}">← Back to requests</a></p>
+</section>
+{% else %}
+<div class="two-col">
+  <section class="panel" style="padding:24px"><h2>Create a dummy consent request</h2>
+    <form action="{{ url_for('consent_demo.create_request') }}" method="post" style="display:grid;gap:12px">
+      <input type="hidden" name="csrf_token" value="{{ csrf }}">
+      <label>Account number<input name="account_no" placeholder="401934" required maxlength="18" style="display:block;width:100%;padding:12px"></label>
+      <p><strong>Requester (signed-in staff):</strong> {{ staff_identity.username }}</p>
+      <label>Purpose<textarea name="purpose" required minlength="5" maxlength="180" rows="3" placeholder="Reason information is being requested" style="display:block;width:100%;padding:12px"></textarea></label>
+      <label>Information requested<select name="data_scope" style="display:block;width:100%;padding:12px">{% for name in allowed_scopes %}<option>{{ name }}</option>{% endfor %}</select></label>
+      <button type="submit" class="btn btn-primary">Create demo consent request</button>
+    </form>
+  </section>
+  <section class="panel" style="padding:24px"><h2>How the simulator works</h2>
+    <ol style="line-height:2"><li>Create a request for a dummy account.</li>
+      <li>A six-digit test code appears once on the next page.</li>
+      <li>Enter the code and choose Approve or Reject.</li>
+      <li>The decision is saved in a local SQLite audit record.</li></ol>
+    <p><strong>Limits:</strong> code expires after five minutes; three incorrect attempts lock the request. Approved test requests permit only a scoped local dummy-data preview until expiry. Original internal staff pages remain separately role-protected; this is not real customer consent.</p>
+  </section>
+</div>
+<section class="panel table-panel"><div class="panel-title"><div><h2>Recent requests</h2><p>Local demonstration history</p></div></div>
+<div class="table-scroll"><table><thead><tr><th>Account</th><th>Requester</th><th>Purpose</th><th>Scope</th><th>Status</th><th></th></tr></thead><tbody>
+{% for r in recent %}<tr><td>{{ r.account_no }}</td><td>{{ r.requester }}</td><td>{{ r.purpose }}</td><td>{{ r.data_scope }}</td><td>{{ r.status }}</td><td><a href="{{ url_for('consent_demo.request_detail', request_id=r.request_id) }}">Review →</a></td></tr>
+{% else %}<tr><td colspan="6">No test consent requests yet.</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Scoped Disclosure Preview{% endblock %}
+{% block breadcrumb %}Consent-based preview{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div><p class="eyebrow">STEP 19 · SCOPED ACCESS · LOCAL DUMMY DATA</p>
+  <h1>Approved information preview</h1>
+  <p class="subheading">Only the fields allowed by this single simulated consent request appear below.</p></div>
+</div>
+<div class="notice"><strong>Demonstration only:</strong> Approval was simulated by a signed-in staff tester, not independently verified with a real customer. This is NOT real consent and must not be used to release customer data.</div>
+<section class="panel" style="max-width:850px;padding:25px">
+  <h2>Request details</h2>
+  <dl class="detail-grid" style="margin-top:16px">
+    <div><dt>Request ID</dt><dd style="overflow-wrap:anywhere">{{ consent.request_id }}</dd></div>
+    <div><dt>Requester</dt><dd>{{ consent.requester }}</dd></div>
+    <div><dt>Account</dt><dd>{{ consent.account_no }}</dd></div>
+    <div><dt>Permitted scope</dt><dd>{{ consent.data_scope }}</dd></div>
+    <div><dt>Purpose</dt><dd>{{ consent.purpose }}</dd></div>
+    <div><dt>Status</dt><dd>Approved (demo; valid until request expiry)</dd></div>
+  </dl>
+</section>
+<section class="panel" style="max-width:850px;padding:25px;margin-top:20px">
+  <h2>Fields allowed by this scope</h2>
+  <dl class="detail-grid" style="margin-top:16px">
+    {% for name,value in fields %}
+    <div><dt>{{ name }}</dt><dd>{{ value }}</dd></div>
+    {% endfor %}
+  </dl>
+  <p style="margin-top:20px;font-size:14px;color:#54667d">Every preview is logged locally. Refreshing after expiry will be denied. Other account fields are not included in this disclosure preview.</p>
+</section>
+<p style="margin-top:22px"><a href="{{ url_for('consent_demo.request_detail', request_id=consent.request_id) }}">← Return to simulated request</a></p>
+{% endblock %}
