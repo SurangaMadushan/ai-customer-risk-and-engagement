@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Model validation{% endblock %}
+{% block breadcrumb %}Model validation{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">HISTORICAL BILLING & EVIDENCE</p><h1>Model validation dashboard</h1><p class="subheading">Our Phase 1 research progress — separate from the 200-customer dummy-data creditworthiness website.</p></div></div>
+<div class="notice"><strong>Research status — not production-approved.</strong> Steps 22–40 examine historical billing, feature quality and provisional scoring rules. They have <strong>not</strong> verified a real one-month non-payment model or established statistically justified scoring weights. Existing customer scores remain dummy-data prototype results.</div>
+{% if not historical_available %}<div class="notice">Step 29 full summary was not found. Run <code>python 29_prepare_account_month_features.py</code> to generate historical totals.</div>{% endif %}
+<div class="stats-grid">
+  <section class="stat-card"><span class="stat-label">Historical billing rows</span><strong>{{ '{:,}'.format(total_bill_rows) if historical_available else '—' }}</strong><small>Aggregate only; not unique invoices</small></section>
+  <section class="stat-card"><span class="stat-label">Account-month feature rows</span><strong>{{ '{:,}'.format(total_account_months) if historical_available else '—' }}</strong><small>Not unique customers</small></section>
+  <section class="stat-card"><span class="stat-label">Historical years</span><strong class="medium-number">{{ years }}</strong><small>2025 intentionally not required; 2026 partial</small></section>
+  <section class="stat-card"><span class="stat-label">Predictively validated score</span><strong class="medium-number" style="color:#b74354">Not yet</strong><small>Settlement-date/outcome evidence still needed</small></section>
+</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-title"><div><h2>Work completed</h2><p>Presence of local reports indicates research artifacts, not approved model results</p></div></div>
+    <div class="method-grid">
+    {% for item in completion %}<div><dt><strong>{{ item.step }}</strong> — {{ item.task }}</dt><dd style="color:{{ '#147a4e' if item.present else '#9b6118' }}">{{ 'Report found' if item.present else 'Check file' }}</dd></div>{% endfor %}
+    </div>
+  </section>
+  <section class="panel"><div class="panel-title"><div><h2>What still needs confirmation</h2><p>Blocking items before scoring weights can be validated</p></div></div>
+    <ol class="long-copy" style="padding-left:20px;line-height:2.2">
+      <li>Source of <code>bill_settled_dtm</code> or dated payment transactions.</li>
+      <li>Reliable invoice-to-payment linkage and stable masked IDs.</li>
+      <li>Whether historical amount fields are snapshots or values known at the time.</li>
+      <li>Madam's approval of the exact next-month non-payment outcome.</li>
+      <li>Independent time-based validation of future outcomes and scoring factors.</li>
+    </ol>
+    <p class="explain-text"><strong>Current scoring weights:</strong> 25 / 20 / 15 / 25 / 10 / 5 are still provisional. Feature correlations and sensitivity checks alone cannot prove these are the right weights.</p>
+  </section>
+</div>
+{% if historical_available %}
+<section class="panel table-panel"><div class="panel-title"><div><h2>Historical account-month preparation by year</h2><p>Non-identifying aggregates from Step 29</p></div></div>
+<div class="table-scroll"><table><thead><tr><th>Year</th><th>Billing rows</th><th>Account-month rows</th><th>Accounts within year</th><th>Account-months with outstanding indicator</th></tr></thead><tbody>
+{% for row in historical %}<tr><td><strong>{{ row.year }}</strong></td><td>{{ '{:,}'.format(row.bills) }}</td><td>{{ '{:,}'.format(row.months) }}</td><td>{{ '{:,}'.format(row.accounts) }}</td><td>{{ '{:,}'.format(row.debt_months) }}</td></tr>{% endfor %}
+</tbody></table></div><p class="explain-text">These are descriptive billing indicators. Do not add annual distinct-account counts to estimate unique customers across years or interpret positive outstanding rows as confirmed defaults.</p></section>
+{% endif %}
+<section class="panel"><div class="panel-title"><div><h2>Next milestone</h2><p>Move from prototype rules to statistically validated evidence</p></div></div>
+<p class="long-copy">Acquire authorized, dated settlement/payment history and validate the join. Then define the one-month target, construct point-in-time labels, evaluate an interpretable model on a later period, and review scoring weights with SLT.</p>
+<p style="margin-top:17px"><a class="btn btn-soft" href="{{ url_for('creditworthiness') }}">View existing prototype creditworthiness →</a></p>
+</section>
+{% endblock %}

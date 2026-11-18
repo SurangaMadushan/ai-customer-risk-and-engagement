@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Creditworthiness{% endblock %}
+{% block breadcrumb %}Creditworthiness{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">PAYMENT RELIABILITY</p><h1>Creditworthiness analysis</h1><p class="subheading">Transparent, payment-history-based scoring for internal review.</p></div></div>
+<div class="notice"><strong>Prototype only.</strong> This is not a credit bureau score, an estimate of personal wealth, or a validated future-default probability. SLT must approve scoring rules before business use.</div>
+<div class="notice"><strong>Historical research update:</strong> We have completed billing-data and scoring-method diagnostics. <a href="{{ url_for('validation_status') }}">View Model Validation Dashboard →</a> Our current creditworthiness scores are still based on synthetic data and provisional weights.</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-title"><div><h2>Reliability bands</h2><p>Distribution in the dummy dataset</p></div></div>
+  {% for label, shade in [('Strong payment reliability','good'), ('Moderate payment reliability','teal'), ('Low payment reliability','medium'), ('Very low payment reliability','high')] %}
+  <div class="bar-row"><div class="bar-label"><span>{{ label }}</span><strong>{{ bands.get(label, 0) }}</strong></div><div class="bar-track"><div class="bar-fill {{ shade }}" style="width:{{ (100 * bands.get(label, 0) / (scores|length))|round(1) if scores else 0 }}%"></div></div></div>
+  {% endfor %}</section>
+  <section class="panel"><div class="panel-title"><div><h2>How the score is calculated</h2><p>Proposed points out of 100</p></div></div>
+    <dl class="method-grid"><div><dt>Settled bill history</dt><dd>25 points</dd></div><div><dt>Payment timing consistency</dt><dd>20 points</dd></div><div><dt>Average payment delay</dt><dd>15 points</dd></div><div><dt>Current arrears</dt><dd>25 points</dd></div><div><dt>Outstanding exposure</dt><dd>10 points</dd></div><div><dt>Collection/suspension history</dt><dd>5 points</dd></div></dl>
+    <p class="explain-text">Scores range from 0 to 100; higher is better historical payment reliability. Fewer than three settled bills means manual review, not a low score.</p>
+  </section>
+</div>
+<section class="panel table-panel"><div class="panel-title"><div><h2>Accounts by reliability score</h2><p>Lowest proposed score first — click to view the customer profile</p></div></div><div class="table-scroll"><table><thead><tr><th>Customer</th><th>Account</th><th>Behaviour</th><th>Score</th><th>Band</th><th>Overdue days</th><th></th></tr></thead><tbody>
+{% for c in scores %}<tr><td><strong>{{ c.customer_id }}</strong></td><td>{{ c.account_no }}</td><td>{{ c.behaviour_classification|clean }}</td><td class="score-inline">{{ '%.1f'|format(c.payment_reliability_score) if c.payment_reliability_score == c.payment_reliability_score else 'Review' }}</td><td>{{ c.reliability_band|clean }}</td><td>{{ c.current_overdue_days|number }}</td><td><a href="{{ url_for('customer_profile', account_no=c.account_no) }}">View →</a></td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

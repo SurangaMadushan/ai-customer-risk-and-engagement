@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}{{ c.customer_id }}{% endblock %}
+{% block breadcrumb %}Customer profile{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow"><a class="back-link" href="{{ url_for('customers') }}">← All customers</a></p><h1>{{ c.customer_id }} <span class="account-label">Account {{ c.account_no }}</span></h1><p class="subheading">{{ c.customer_type|clean }} · {{ c.service_type|clean }} · {{ c.package|clean }}</p></div><span class="chip {% if c.is_overdue %}chip-red{% else %}chip-green{% endif %}">{{ 'Overdue balance' if c.is_overdue else 'No currently overdue bill' }}</span></div>
+<div class="notice"><strong>Important:</strong> The score and collection action are illustrative decision support—not official creditworthiness or an automatic instruction to contact, restrict, or suspend a customer.</div>
+<div class="stats-grid profile-stats">
+  <div class="stat-card"><span class="stat-label">Payment reliability score</span><strong>{% if c.payment_reliability_score == c.payment_reliability_score %}{{ '%.1f'|format(c.payment_reliability_score) }}<span class="score-outof"> / 100</span>{% else %}Review{% endif %}</strong><small>{{ c.reliability_band|clean }}</small></div>
+  <div class="stat-card"><span class="stat-label">Current outstanding</span><strong class="medium-number">{{ c.current_outstanding_LKR|money }}</strong><small>Latest snapshot</small></div>
+  <div class="stat-card"><span class="stat-label">Overdue days</span><strong>{{ c.current_overdue_days|number }}</strong><small>Unpaid past-due bills: {{ c.unpaid_past_due_bills|number }}</small></div>
+  <div class="stat-card"><span class="stat-label">Payment behaviour</span><strong class="text-number">{{ c.behaviour_classification|clean }}</strong><small>Classification based on historical patterns</small></div>
+</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-title"><div><h2>Account details</h2><p>Customer master record</p></div></div>
+    <dl class="detail-grid"><div><dt>Customer ID</dt><dd>{{ c.customer_id }}</dd></div><div><dt>Account No.</dt><dd>{{ c.account_no }}</dd></div><div><dt>Customer type</dt><dd>{{ c.customer_type|clean }}</dd></div><div><dt>Service type</dt><dd>{{ c.service_type|clean }}</dd></div><div><dt>Package</dt><dd>{{ c.package|clean }}</dd></div><div><dt>Region</dt><dd>{{ c.region|clean }}</dd></div><div><dt>Connection date</dt><dd>{{ c.connection_date|date_short }}</dd></div><div><dt>Payment method</dt><dd>{{ c.preferred_payment_method|clean }}</dd></div></dl>
+  </section>
+  <section class="panel"><div class="panel-title"><div><h2>Recommended collection action</h2><p>Draft business rules · Human review required</p></div></div>
+    <span class="chip large {% if c.recommended_action == 'Priority follow-up' %}chip-red{% elif c.recommended_action == 'Normal follow-up' %}chip-orange{% else %}chip-green{% endif %}">{{ c.recommended_action }}</span>
+    <h3 class="inner-title">Why this recommendation?</h3><p class="long-copy">{{ c.recommendation_reason|clean }}</p>
+    <div class="rule-note"><strong>Applied rule:</strong> {{ c.recommendation_rule|clean }}</div>
+  </section>
+</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-title"><div><h2>Creditworthiness breakdown</h2><p>Proposed payment-reliability scoring method</p></div></div>
+    {% for s in breakdown %}<div class="bar-row"><div class="bar-label"><span>{{ s.label }}</span><strong>{{ s.earned|clean }} / {{ s.max }}</strong></div><div class="bar-track"><div class="bar-fill teal" style="width:{{ (100 * (s.earned|float) / s.max)|round(1) }}%"></div></div></div>{% endfor %}
+    <p class="explain-text">{{ c.score_reason|clean }}</p>
+  </section>
+  <section class="panel"><div class="panel-title"><div><h2>Payment history indicators</h2><p>Derived from historic bills and payment timing</p></div></div>
+    <dl class="detail-grid"><div><dt>Bills settled</dt><dd>{{ c.settled_bills|number }} / {{ c.total_bills|number }}</dd></div><div><dt>Late payments</dt><dd>{{ c.late_payments|number }}</dd></div><div><dt>Average payment delay</dt><dd>{{ '%.1f'|format(c.avg_payment_delay_days|float) }} days</dd></div><div><dt>Payment consistency</dt><dd>{{ '%.0f'|format((c.payment_consistency|float) * 100) }}%</dd></div><div><dt>Collection actions</dt><dd>{{ c.collection_actions|number }}</dd></div><div><dt>Suspensions</dt><dd>{{ c.suspensions|number }}</dd></div></dl>
+    <p class="explain-text">{{ c.classification_reason|clean }}</p>
+  </section>
+</div>
+<div class="history-nav"><a href="#billing">Billing history</a><a href="#payments">Payment history</a><a href="#actions">Collections</a><a href="#suspensions">Suspensions</a></div>
+<section class="panel table-panel" id="billing"><div class="panel-title"><div><h2>Billing history <span class="count-pill">{{ billing|length }}</span></h2><p>Invoices and settlement dates</p></div></div><div class="table-scroll"><table><thead><tr><th>Invoice</th><th>Bill date</th><th>Due date</th><th>Settled</th><th>Net amount</th><th>Tax</th><th>Balance out</th></tr></thead><tbody>{% for r in billing %}<tr><td>{{ r.invoice_no }}</td><td>{{ r.bill_dtm|date_short }}</td><td>{{ r.payment_due_dtm|date_short }}</td><td>{{ r.bill_settled_dtm|date_short }}</td><td>{{ r.invoice_net_amt|money }}</td><td>{{ r.invoice_tax_amt|money }}</td><td>{{ r.balance_out_amt|money }}</td></tr>{% else %}<tr><td colspan="7" class="empty-row">No billing records.</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="panel table-panel" id="payments"><div class="panel-title"><div><h2>Payment history <span class="count-pill">{{ payments|length }}</span></h2><p>Transactions recorded against the selected customer</p></div></div><div class="table-scroll"><table><thead><tr><th>Payment ID</th><th>Invoice</th><th>Date</th><th>Amount</th><th>Method</th></tr></thead><tbody>{% for r in payments %}<tr><td>{{ r.payment_id }}</td><td>{{ r.invoice_no }}</td><td>{{ r.payment_dtm|date_short }}</td><td>{{ r.payment_amt|money }}</td><td>{{ r.payment_method|clean }}</td></tr>{% else %}<tr><td colspan="5" class="empty-row">No payments recorded.</td></tr>{% endfor %}</tbody></table></div></section>
+<div class="two-col"><section class="panel table-panel" id="actions"><div class="panel-title"><div><h2>Collection history</h2><p>Previous follow-up actions</p></div></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Overdue days</th><th>Outcome</th></tr></thead><tbody>{% for r in collections %}<tr><td>{{ r.action_dtm|date_short }}</td><td>{{ r.action_type|clean }}</td><td>{{ r.days_past_due|number }}</td><td>{{ r.outcome|clean }}</td></tr>{% else %}<tr><td colspan="4" class="empty-row">No collection history.</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="panel table-panel" id="suspensions"><div class="panel-title"><div><h2>Suspension history</h2><p>Previous service suspension events</p></div></div><div class="table-scroll"><table><thead><tr><th>Suspended</th><th>Reconnected</th><th>Status</th><th>Reason</th></tr></thead><tbody>{% for r in suspensions %}<tr><td>{{ r.suspension_dtm|date_short }}</td><td>{{ r.reconnection_dtm|date_short }}</td><td>{{ r.status|clean }}</td><td>{{ r.reason|clean }}</td></tr>{% else %}<tr><td colspan="4" class="empty-row">No suspension history.</td></tr>{% endfor %}</tbody></table></div></section></div>
+{% endblock %}

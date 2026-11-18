@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Setup required{% endblock %}
+{% block breadcrumb %}Setup{% endblock %}
+{% block content %}
+<div class="page-head"><div><p class="eyebrow">LOCAL SETUP</p><h1>Connect your analysis outputs</h1><p class="subheading">Your website code is running, but its expected project data is not ready yet.</p></div></div>
+<section class="panel"><h2>How to fix it</h2>
+{% if missing %}<p>These files are missing from the main <code>SLT_Payment_Project</code> folder:</p><ul>{% for f in missing %}<li><code>{{ f }}</code></li>{% endfor %}</ul>{% endif %}
+{% if error %}<p>The data could not be joined or validated:</p><div class="error-note">{{ error }}</div>{% endif %}
+<p>Open VS Code Terminal inside <code>SLT_Payment_Project</code> and run each command in sequence:</p>
+<pre><code>python 13_classify_payment_behaviour.py
+python 14_collection_recommendations.py
+python 15_creditworthiness_analysis.py</code></pre>
+<p>Then refresh this browser page. Keep your original dummy workbook in the <code>data</code> folder. Do not move the CSV files from <code>outputs</code>.</p></section>
+{% endblock %}

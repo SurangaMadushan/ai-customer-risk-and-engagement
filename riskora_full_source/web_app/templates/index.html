@@ -1,0 +1,251 @@
+
+{% extends 'base.html' %}
+{% block title %}Overview{% endblock %}
+{% block breadcrumb %}Overview{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div>
+    <p class="eyebrow">CUSTOMER RISK &amp; ENGAGEMENT</p>
+    <h1>Riskora Intelligence Overview</h1>
+    <p class="subheading">
+      Customer payment behaviour, creditworthiness,
+      outstanding balances and collection priorities.
+    </p>
+  </div>
+
+  {% if staff_identity and staff_identity.role in ['admin', 'analyst'] %}
+  <a class="btn btn-primary" href="{{ url_for('customers') }}">
+    Find a customer ↗
+  </a>
+  {% endif %}
+</div>
+
+<div class="notice">
+  <strong>Demonstration environment:</strong>
+  This dashboard uses synthetic customer billing and payment data.
+  Creditworthiness scores and collection recommendations are
+  provisional and are not validated SLT production decisions.
+  Actual historical billing research is available separately.
+</div>
+
+<!-- CUSTOMER OVERVIEW CARDS -->
+
+<div class="stats-grid">
+
+  <div class="stat-card">
+    <span class="stat-label">Total customer accounts</span>
+    <strong>{{ total }}</strong>
+    <small>Synthetic customer accounts</small>
+    <span class="stat-icon">▦</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">Currently overdue</span>
+    <strong>{{ overdue }}</strong>
+    <small>
+      {{ '%.1f'|format(100 * overdue / total if total else 0) }}%
+      of demo accounts
+    </small>
+    <span class="stat-icon">◷</span>
+  </div>
+
+  <div class="stat-card wide">
+    <span class="stat-label">
+      Outstanding on overdue accounts
+    </span>
+    <strong>{{ overdue_total|money }}</strong>
+    <small>
+      Synthetic outstanding balance, not a confirmed default
+    </small>
+    <span class="stat-icon">◈</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">
+      Average payment reliability score
+    </span>
+    <strong>
+      {{ '%.1f'|format(avg_score) }}
+      <span class="score-outof">/ 100</span>
+    </strong>
+    <small>Provisional scoring methodology</small>
+    <span class="stat-icon">◇</span>
+  </div>
+
+</div>
+
+<!-- COLLECTIONS AND PAYMENT BEHAVIOUR -->
+
+<div class="two-col">
+
+  <section class="panel">
+    <div class="panel-title">
+      <div>
+        <h2>Collection recommendations</h2>
+        <p>Rule-based follow-up prioritization</p>
+      </div>
+      <a href="{{ url_for('collections') }}">
+        View all →
+      </a>
+    </div>
+
+    {% set total_actions = collection_counts.values()|sum %}
+
+    {% for label, shade in [
+      ('No follow-up', 'good'),
+      ('Normal follow-up', 'medium'),
+      ('Priority follow-up', 'high')
+    ] %}
+
+    {% set count = collection_counts.get(label, 0) %}
+
+    <div class="bar-row">
+      <div class="bar-label">
+        <span>{{ label }}</span>
+        <strong>{{ count }}</strong>
+      </div>
+
+
+<div class="bar-track">
+  <progress
+    value="{{ count }}"
+    max="{{ total_actions if total_actions else 1 }}"
+    style="width:100%; height:12px; accent-color:#169b83;">
+  </progress>
+</div>
+
+
+    {% endfor %}
+  </section>
+
+  <section class="panel">
+    <div class="panel-title">
+      <div>
+        <h2>Payment behaviour</h2>
+        <p>Synthetic customer payment classifications</p>
+      </div>
+      <a href="{{ url_for('customers') }}">
+        Explore →
+      </a>
+    </div>
+
+    {% set total_categories = categories.values()|sum %}
+
+    {% for label, shade in [
+      ('Regular payer', 'good'),
+      ('Predictable late payer', 'teal'),
+      ('Irregular payer', 'medium'),
+      ('High-risk non-payer', 'high')
+    ] %}
+
+    {% set count = categories.get(label, 0) %}
+
+    <div class="bar-row">
+      <div class="bar-label">
+        <span>{{ label }}</span>
+        <strong>{{ count }}</strong>
+      </div>
+
+
+<div class="bar-track">
+  <progress
+    value="{{ count }}"
+    max="{{ total_categories if total_categories else 1 }}"
+    style="width:100%; height:12px; accent-color:#138a9e;">
+  </progress>
+</div>
+
+
+    {% endfor %}
+  </section>
+
+</div>
+
+<!-- PRIORITY CUSTOMER LIST -->
+
+{% if staff_identity and staff_identity.role in ['admin', 'analyst'] %}
+
+<section class="panel table-panel">
+
+  <div class="panel-title">
+    <div>
+      <h2>Priority follow-up accounts</h2>
+      <p>Accounts with the longest overdue duration in the demo</p>
+    </div>
+
+    <a href="{{ url_for('collections', action='Priority follow-up') }}">
+      View list →
+    </a>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Account</th>
+          <th>Type</th>
+          <th>Overdue days</th>
+          <th>Outstanding</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for c in priority %}
+        <tr>
+          <td><strong>{{ c.customer_id }}</strong></td>
+          <td>{{ c.account_no }}</td>
+          <td>{{ c.customer_type }}</td>
+          <td>{{ c.current_overdue_days|number }}</td>
+          <td class="number">
+            {{ c.current_outstanding_LKR|money }}
+          </td>
+          <td>
+            <a href="{{ url_for('customer_profile', account_no=c.account_no) }}">
+              View profile →
+            </a>
+          </td>
+        </tr>
+
+        {% else %}
+
+        <tr>
+          <td colspan="6">No priority accounts to display.</td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+{% endif %}
+
+<!-- SEPARATE REAL HISTORICAL ANALYSIS -->
+
+<section class="panel">
+  <div class="panel-title">
+    <div>
+      <h2>Historical Billing Research</h2>
+      <p>
+        Separate analysis of actual masked SLT billing records
+      </p>
+    </div>
+    <a href="{{ url_for('historical_billing') }}">
+      View analysis →
+    </a>
+  </div>
+
+  <p>
+    The historical billing dashboard provides aggregated
+    insights for 2021, 2022, 2023, 2024 and partial 2026.
+    These records are not combined with the synthetic
+    customer scores displayed above.
+  </p>
+
+</section>
+
+{% endblock %}

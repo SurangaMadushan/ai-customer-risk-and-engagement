@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% block title %}Credit Score & Rank{% endblock %}
+{% block breadcrumb %}Credit Score & Rank{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div>
+    <p class="eyebrow">PRIVATE CREDIT DATA ANALYSIS</p>
+    <h1>Credit Score & Rank</h1>
+    <p class="subheading">
+      September 2026 masked credit sample.
+      Separate from synthetic creditworthiness scoring.
+    </p>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>Local research data only.</strong>
+  Credit scores and ranks are displayed as supplied.
+  Their definitions and rank direction still need
+  confirmation. These records are not joined to
+  synthetic Riskora customer profiles or predictions.
+</div>
+
+<div class="stats-grid">
+  <section class="stat-card">
+    <span class="stat-label">Account-Level Records</span>
+    <strong>{{ "{:,}".format(ba_count) }}</strong>
+    <small>CCW BA sample</small>
+  </section>
+  <section class="stat-card">
+    <span class="stat-label">CR-Level Records</span>
+    <strong>{{ "{:,}".format(cr_count) }}</strong>
+    <small>CCW CR sample</small>
+  </section>
+  <section class="stat-card">
+    <span class="stat-label">Matching CR References</span>
+    <strong>{{ "{:,}".format(matching_refs) }}</strong>
+    <small>Overlap between supplied samples</small>
+  </section>
+  <section class="stat-card">
+    <span class="stat-label">Special-Value Rows</span>
+    <strong>{{ special_codes }}</strong>
+    <small>Values needing definition confirmation</small>
+  </section>
+</div>
+
+<section class="panel">
+  <div class="panel-title">
+    <div>
+      <h2>Find Credit Information</h2>
+      <p>Search using an exact account number or CR number.</p>
+    </div>
+  </div>
+
+  <form method="get" action="{{ url_for('credit_data') }}"
+        style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <input type="text" name="q" value="{{ q }}"
+           placeholder="Account number or CR number"
+           maxlength="60" required
+           style="flex:1;min-width:220px;padding:12px;
+                  border:1px solid #cbd6e4;border-radius:8px">
+    <button type="submit" class="btn btn-soft">
+      Search Credit Data
+    </button>
+  </form>
+</section>
+
+
+{% if not q %}
+
+<!-- ACCOUNT DIRECTORY -->
+<section class="panel table-panel">
+  <div class="panel-title">
+    <div>
+      <h2>Account-Level Credit Records</h2>
+      <p>
+        CCW BA data - {{ "{:,}".format(ba_count) }} records.
+        Showing 25 records per page.
+      </p>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>CR Number</th>
+          <th>Account Number</th>
+          <th>Credit Score</th>
+          <th>Credit Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in directory_ba %}
+        <tr>
+          <td>{{ r.cr_number }}</td>
+          <td>{{ r.account_number }}</td>
+          <td>{{ r.credit_score }}</td>
+          <td>{{ r.credit_rank }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="4">No account records available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;
+              align-items:center;gap:12px;flex-wrap:wrap;
+              margin-top:18px">
+
+    <span>Page {{ ba_page }} of {{ ba_pages }}</span>
+
+    <div style="display:flex;gap:10px">
+      {% if ba_page > 1 %}
+      <a class="btn btn-soft"
+         href="{{ url_for('credit_data',
+                          ba_page=ba_page-1,
+                          cr_page=cr_page) }}">
+        Previous
+      </a>
+      {% endif %}
+
+      {% if ba_page < ba_pages %}
+      <a class="btn btn-soft"
+         href="{{ url_for('credit_data',
+                          ba_page=ba_page+1,
+                          cr_page=cr_page) }}">
+        Next
+      </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<!-- CR LEVEL DIRECTORY -->
+<section class="panel table-panel">
+  <div class="panel-title">
+    <div>
+      <h2>CR-Level Credit Records</h2>
+      <p>
+        CCW CR data - {{ "{:,}".format(cr_count) }} records.
+        Showing 25 records per page.
+      </p>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>CR Number</th>
+          <th>Minimum Credit Score</th>
+          <th>Maximum Credit Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in directory_cr %}
+        <tr>
+          <td>{{ r.cr_number }}</td>
+          <td>{{ r.min_credit_score }}</td>
+          <td>{{ r.max_credit_rank }}</td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="3">No CR-level records available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;
+              align-items:center;gap:12px;flex-wrap:wrap;
+              margin-top:18px">
+
+    <span>Page {{ cr_page }} of {{ cr_pages }}</span>
+
+    <div style="display:flex;gap:10px">
+      {% if cr_page > 1 %}
+      <a class="btn btn-soft"
+         href="{{ url_for('credit_data',
+                          ba_page=ba_page,
+                          cr_page=cr_page-1) }}">
+        Previous
+      </a>
+      {% endif %}
+
+      {% if cr_page < cr_pages %}
+      <a class="btn btn-soft"
+         href="{{ url_for('credit_data',
+                          ba_page=ba_page,
+                          cr_page=cr_page+1) }}">
+        Next
+      </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% endif %}
+
+{% if q %}
+<section class="panel table-panel">
+  <div class="panel-title">
+    <div>
+      <h2>Account-Level Credit Information</h2>
+      <p>Records from CCW BA</p>
+    </div>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr>
+        <th>CR Number</th>
+        <th>Account Number</th>
+        <th>Credit Score</th>
+        <th>Credit Rank</th>
+      </tr></thead>
+      <tbody>
+        {% for r in ba_results %}
+        <tr>
+          <td>{{ r.cr_number }}</td>
+          <td>{{ r.account_number }}</td>
+          <td>{{ r.credit_score }}</td>
+          <td>{{ r.credit_rank }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No matching account-level record.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel table-panel">
+  <div class="panel-title">
+    <div>
+      <h2>CR-Level Credit Summary</h2>
+      <p>Matching CR references from CCW CR, when available</p>
+    </div>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead><tr>
+        <th>CR Number</th>
+        <th>Minimum Credit Score</th>
+        <th>Maximum Credit Rank</th>
+      </tr></thead>
+      <tbody>
+        {% for r in cr_results %}
+        <tr>
+          <td>{{ r.cr_number }}</td>
+          <td>{{ r.min_credit_score }}</td>
+          <td>{{ r.max_credit_rank }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="3">No matching CR-level record in the supplied sample.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endif %}
+
+<div class="notice">
+  <strong>Data-quality note:</strong>
+  Values such as credit score 999 and credit rank 99
+  require confirmation from the data owner.
+  Do not interpret them as normal credit scores or ranks.
+</div>
+
+{% endblock %}\n

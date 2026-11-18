@@ -1,0 +1,342 @@
+
+{% extends 'base.html' %}
+{% block title %}Risk Prediction{% endblock %}
+{% block breadcrumb %}Risk Prediction{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div class="page-head">
+  <div>
+    <p class="eyebrow">AI PAYMENT RISK ANALYSIS</p>
+    <h1>One-Month Non-Payment Prediction</h1>
+    <p class="subheading">
+      Customer payment-risk forecasting using
+      synthetic billing and payment history.
+    </p>
+  </div>
+</div>
+
+<!-- DEMO NOTICE -->
+<div class="notice">
+  <strong>Demonstration model:</strong>
+  Results are calculated from synthetic data using
+  NumPy Logistic Regression. They are not validated
+  predictions for real SLT customers.
+</div>
+
+<!-- CUSTOMER LOOKUP - FULL WIDTH -->
+<section class="panel" style="margin-bottom:24px;">
+
+  <div class="panel-title">
+    <div>
+      <h2>Check Customer Prediction</h2>
+      <p>
+        Enter a Customer ID or Account Number
+        to view the saved next-month forecast.
+      </p>
+    </div>
+  </div>
+
+  <form id="riskLookupForm"
+        style="display:flex;flex-wrap:wrap;
+               align-items:center;gap:12px;
+               margin-top:20px;">
+
+    <input
+      type="search"
+      id="riskCustomerInput"
+      placeholder="Enter Customer ID or Account Number"
+      autocomplete="off"
+      required
+      style="flex:1;min-width:220px;
+             padding:14px 16px;
+             border:1px solid #cfdae5;
+             border-radius:9px;
+             font-size:15px;
+             box-sizing:border-box;">
+
+    <button type="submit"
+            class="btn btn-primary">
+      Check Prediction
+    </button>
+
+  </form>
+
+  <p id="riskLookupMessage"
+     role="status"
+     aria-live="polite"
+     style="margin-top:14px;font-size:14px;">
+  </p>
+
+  <!-- CUSTOMER RESULT -->
+  <div id="riskLookupResult"
+       hidden
+       style="margin-top:20px;
+              background:#f4fafb;
+              border:1px solid #d4e7ea;
+              border-radius:12px;
+              padding:22px;">
+
+    <h3 style="margin-bottom:18px;">
+      Customer Prediction Result
+    </h3>
+
+    <div style="display:grid;
+                grid-template-columns:
+                repeat(auto-fit,minmax(180px,1fr));
+                gap:20px;">
+
+      <div>
+        <small>Customer ID</small>
+        <h3 id="resultCustomer"></h3>
+      </div>
+
+      <div>
+        <small>Account Number</small>
+        <h3 id="resultAccount"></h3>
+      </div>
+
+      <div>
+        <small>Predicted Risk Score</small>
+        <h2 id="resultScore"
+            style="color:#087d91;"></h2>
+      </div>
+
+      <div>
+        <small>Risk Category</small>
+        <h3 id="resultBand"></h3>
+      </div>
+
+      <div>
+        <small>Forecast Month</small>
+        <h3 id="resultMonth"></h3>
+      </div>
+
+    </div>
+
+    <p style="margin-top:18px;
+              font-size:12px;
+              color:#64748b;">
+      This result is retrieved from the previously
+      generated synthetic prediction file.
+      It is not a newly calculated prediction
+      or a validated real-world default probability.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- DASHBOARD STATISTICS -->
+<div class="stats-grid">
+
+  <div class="stat-card">
+    <span class="stat-label">
+      Customers Predicted
+    </span>
+    <strong>{{ total }}</strong>
+    <small>Synthetic customers</small>
+    <span class="stat-icon">▦</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">
+      High Risk
+    </span>
+    <strong>{{ high }}</strong>
+    <small>Demo classification</small>
+    <span class="stat-icon">◈</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">
+      Medium Risk
+    </span>
+    <strong>{{ medium }}</strong>
+    <small>Demo classification</small>
+    <span class="stat-icon">◷</span>
+  </div>
+
+  <div class="stat-card">
+    <span class="stat-label">
+      Low Risk
+    </span>
+    <strong>{{ low }}</strong>
+    <small>Demo classification</small>
+    <span class="stat-icon">◇</span>
+  </div>
+
+</div>
+
+<!-- PREDICTION TABLE -->
+<section class="panel table-panel"
+         style="margin-top:24px;">
+
+  <div class="panel-title">
+    <div>
+      <h2>Customer Risk Predictions</h2>
+      <p>
+        Forecast Month:
+        <strong>{{ forecast_month }}</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="table-scroll">
+
+    <table id="riskResultsTable">
+
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>Account Number</th>
+          <th>Risk Score</th>
+          <th>Risk Category</th>
+          <th>Forecast Month</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for customer in predictions %}
+
+        <tr
+          data-customer="{{ customer.customer_id }}"
+          data-account="{{ customer.account_no }}">
+
+          <td>
+            <strong>{{ customer.customer_id }}</strong>
+          </td>
+
+          <td>{{ customer.account_no }}</td>
+
+          <td>
+            {{ '%.1f'|format(
+                customer.predicted_risk * 100
+            ) }}%
+          </td>
+
+          <td>{{ customer.risk_band }}</td>
+
+          <td>{{ customer.forecast_month }}</td>
+
+        </tr>
+
+        {% else %}
+
+        <tr>
+          <td colspan="5">
+            No customer predictions available.
+          </td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<!-- CUSTOMER PREDICTION LOOKUP SCRIPT -->
+<script>
+(function () {
+  "use strict";
+
+  const form =
+    document.getElementById("riskLookupForm");
+
+  const input =
+    document.getElementById("riskCustomerInput");
+
+  const message =
+    document.getElementById("riskLookupMessage");
+
+  const result =
+    document.getElementById("riskLookupResult");
+
+  const rows = document.querySelectorAll(
+    "#riskResultsTable tbody tr[data-account]"
+  );
+
+  form.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const query = input.value.trim().toUpperCase();
+
+    result.hidden = true;
+    message.textContent = "";
+
+    if (!query) {
+      message.textContent =
+        "Please enter a Customer ID or Account Number.";
+      message.style.color = "#b42318";
+      return;
+    }
+
+    let matchedRow = null;
+
+    for (const row of rows) {
+
+      const customerId =
+        row.dataset.customer.trim().toUpperCase();
+
+      const accountNo =
+        row.dataset.account.trim().toUpperCase();
+
+      if (query === customerId || query === accountNo) {
+        matchedRow = row;
+        break;
+      }
+
+    }
+
+    if (!matchedRow) {
+
+      message.textContent =
+        "Customer not found in the synthetic prediction dataset.";
+
+      message.style.color = "#b42318";
+      return;
+
+    }
+
+    const cells = matchedRow.querySelectorAll("td");
+
+    document.getElementById(
+      "resultCustomer"
+    ).textContent = cells[0].textContent.trim();
+
+    document.getElementById(
+      "resultAccount"
+    ).textContent = cells[1].textContent.trim();
+
+    document.getElementById(
+      "resultScore"
+    ).textContent = cells[2].textContent.trim();
+
+    document.getElementById(
+      "resultBand"
+    ).textContent = cells[3].textContent.trim();
+
+    document.getElementById(
+      "resultMonth"
+    ).textContent = cells[4].textContent.trim();
+
+    result.hidden = false;
+
+    message.textContent =
+      "Saved customer prediction found successfully.";
+
+    message.style.color = "#087f68";
+
+  });
+
+})();
+</script>
+
+{% endblock %}
